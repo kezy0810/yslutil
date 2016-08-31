@@ -12,6 +12,7 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.io.FileUtils;
 import org.apache.tools.zip.ZipEntry;
 import org.apache.tools.zip.ZipOutputStream;
 
@@ -328,7 +329,25 @@ public class FileUtil {
         return out.toByteArray();
     }
     
-    
+    /**
+     * 写文件到指定的资源库路径
+     * 
+     * @param in
+     * @param fileName
+     * @throws IOException
+     */
+    public static String copyFile(InputStream in, String dir, String realName)
+            throws IOException {
+        File file = new File(dir, realName);
+        if (!file.exists()) {
+            if (!file.getParentFile().exists()) {
+                file.getParentFile().mkdirs();
+            }
+            file.createNewFile();
+        }
+        FileUtils.copyInputStreamToFile(in, file);
+        return realName;
+    }
     
 	public static void main(String[] args) {
 		String sourceFilePath = "C:/Users/Public/Documents/RTXC File List";
