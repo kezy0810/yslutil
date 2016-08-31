@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+  PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+  "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+	<properties resource="generatorConfig.properties" />
+	<classPathEntry location="${classPath}" />
+	<context id="MBG" targetRuntime="MyBatis3" defaultModelType="conditional">
+		<!-- 配置插件 -->
+		<plugin type="org.mybatis.generator.plugins.ToStringPlugin" />
+		<plugin type="com.qkl.util.help.mybatis.comment.ClassCommentPlugin" />
+		<plugin type="org.mybatis.generator.plugins.EqualsHashCodePlugin" />
+		<plugin type="org.mybatis.generator.plugins.SerializablePlugin" />
+		<plugin type="org.mybatis.generator.plugins.CaseInsensitiveLikePlugin" />
+		<commentGenerator type="com.qkl.util.help.mybatis.comment.PackageCommentGenerator">
+			<property name="suppressAllComments" value="true" />
+			<property name="suppressDate" value="false" />
+		</commentGenerator>
+		<!-- <plugin type="org.hlc.demo.mybatis.annotation.ValidationAnnotationPlugin" /> -->
+
+		<!-- <plugin type="org.hlc.tools.code.generator.ExtendsDaoPlugin" /> <plugin type="org.hlc.tools.code.generator.JsonSerializePlugin" /> -->
+		<!-- <plugin type="org.hlc.tools.code.generator.MapperConveterPlugin"> <property name="searchString" value="Mapper$" /> <property name="replaceString" value="BaseDao" /> <property name="US_ACCOUNT" value="mapper/AccountMapper.xml" /> <property name="US_CAR" value="mapper/CarMapper.xml" /> <property name="US_EQUIPMENT" value="mapper/EquipmentMapper.xml" /> <property name="US_PARTIES" value="mapper/PartiesMapper.xml" /> <property name="JY_JOURNEY" value="mapper/JourneyMapper.xml" /> <property name="US_USER_PHOTOS" value="mapper/UserPhotoMapper.xml" /> <property name="BS_POSITION" value="mapper/PositionMapper.xml" /> <property name="CN_JNY_MEMBER" value="mapper/JourneyMemberMapper.xml" /> <property name="JY_EXPENSES" 
+			value="mapper/ExpensesMapper.xml" /> <property name="JY_EXPENSES_DETAIL" value="mapper/ExpensesDetailMapper.xml" /> <property name="JY_SCHEDULE" value="mapper/ScheduleMapper.xml" /> <property name="JY_SCHEDULE_ACTIVITY" value="mapper/ScheduleActivityMapper.xml" /> <property name="BS_FILE_MAP" value="mapper/DispersedFileMapper.xml" /> <property name="CN_JNY_CAR" value="mapper/JourneyCarMapper.xml" /> <property name="CN_JNY_EQU" value="mapper/JourneyEquipmentMapper.xml" /> <property name="CN_JNY_PAT" value="mapper/JourneyPartiesMapper.xml" /> </plugin> -->
+		<!-- <plugin type="org.mybatis.generator.plugins.MapperConfigPlugin"> <property name="fileName" value="GeneratedMapperConfig.xml" /> <property name="targetPackage" value="conifg" /> <property name="targetProject" value="${targetProject}" /> </plugin> -->
+		<!-- <plugin type="org.hlc.tools.code.generator.SequencesGenPlugin"> <property name="US_USER" value="SELECT LAST_INSERT_ID() AS ACCOUNT" /> <property name="BS_POSITION" value="SELECT LAST_INSERT_ID() AS ID" /> <property name="US_CAR" value="SELECT LAST_INSERT_ID() AS ID" /> <property name="US_EQUIPMENT" value="SELECT LAST_INSERT_ID() AS ID" /> <property name="JY_EXPENSES" value="SELECT LAST_INSERT_ID() AS ID" /> <property name="US_GROUP_PHOTOS" value="SELECT LAST_INSERT_ID() AS ID" /> <property name="US_INTEGRAL_RECORD" value="SELECT LAST_INSERT_ID() AS ID" /> <property name="JY_JOURNEY" value="SELECT LAST_INSERT_ID() AS ID" /> <property name="US_PARTIES" value="SELECT LAST_INSERT_ID() AS ID" /> <property 
+			name="JY_SCHEDULE" value="SELECT LAST_INSERT_ID() AS ID" /> <property name="US_USER_PHOTOS" value="SELECT LAST_INSERT_ID() AS ID" /> <property name="BS_WEATHER" value="SELECT LAST_INSERT_ID() AS ID" /> <property name="JY_SCHEDULE_ACTIVITY" value="SELECT LAST_INSERT_ID() AS ID" /> <property name="OFGROUP" value="SELECT LAST_INSERT_ID() AS ID" /> <property name="JY_EXPENSES_DETAIL" value="SELECT LAST_INSERT_ID() AS ID" /> </plugin> -->
+
+
+		<jdbcConnection driverClass="${driverClass}" connectionURL="${connectionURL}" userId="${userId}" password="${password}" />
+
+		<javaTypeResolver>
+			<property name="forceBigDecimals" value="false" />
+			<!-- 类型解析器 -->
+		</javaTypeResolver>
+
+		<javaModelGenerator targetPackage="${modelPackage}" targetProject="${targetProject}">
+			<!-- 实体类 -->
+			<property name="enableSubPackages" value="true" />
+		    <property name="trimStrings" value="true" />
+		</javaModelGenerator>
+<!-- 实体类SQL映射文件 -->
+		<sqlMapGenerator targetPackage="${sqlMapperPackage}" targetProject="${targetProject}">
+			
+			<property name="enableSubPackages" value="true" />
+		</sqlMapGenerator>
+
+		<!-- Mapper接口 -->
+		<javaClientGenerator type="com.qkl.util.help.mybatis.mapper.CodeJavaMapperGenerator" targetPackage="${daoMapperPackage}" targetProject="${targetProject}">
+			<property name="enableSubPackages" value="true" />
+		</javaClientGenerator>
+
+		<!-- 基础表 -->
+		<!-- <table tableName="BSREGION" domainObjectName="Region" enableCountByExample="false" enableDeleteByExample="flase" enableSelectByExample="false" enableUpdateByExample="false" selectByExampleQueryId="false" /> -->
+
+
+<!-- 	    <table tableName="tb_indicators"  domainObjectName="Indicators"> -->
+<!-- 	    	<property name="useActualColumnNames" value="true"/> -->
+<!-- 	        <generatedKey column="enum_id" sqlStatement="mysql" identity="true" /> -->
+<!-- 	      	<columnOverride column="DATE_FIELD" property="startDate" /> -->
+<!-- 	      	<columnOverride column="LONG_VARCHAR_FIELD" jdbcType="VARCHAR" />        -->
+<!-- 	    </table> -->
+<!-- 	    <table tableName="tb_sum_inv_d"  domainObjectName="SumInvest">
+	    	<property name="useActualColumnNames" value="true"/>
+	        <generatedKey column="enum_id" sqlStatement="mysql" identity="true" />
+	      	<columnOverride column="DATE_FIELD" property="startDate" />
+	      	<columnOverride column="LONG_VARCHAR_FIELD" jdbcType="VARCHAR" />       
+	    </table>
+	    <table tableName="tb_ind_d"  domainObjectName="IndexIndicators">
+	    	<property name="useActualColumnNames" value="true"/>
+	        <generatedKey column="enum_id" sqlStatement="mysql" identity="true" />
+	      	<columnOverride column="DATE_FIELD" property="startDate" />
+	      	<columnOverride column="LONG_VARCHAR_FIELD" jdbcType="VARCHAR" />       
+	    </table>
+	    <table tableName="tb_activity_cooperation"  domainObjectName="ActivityCooperation">
+	    	<property name="useActualColumnNames" value="false"/>
+	        <generatedKey column="enum_id" sqlStatement="mysql" identity="true" />
+	      	<columnOverride column="DATE_FIELD" property="startDate" />
+	      	<columnOverride column="LONG_VARCHAR_FIELD" jdbcType="VARCHAR" />       
+	    </table>
+	    <table tableName="tb_activity_other"  domainObjectName="ActivityOther">
+	    	<property name="useActualColumnNames" value="false"/>
+	        <generatedKey column="enum_id" sqlStatement="mysql" identity="true" />
+	      	<columnOverride column="DATE_FIELD" property="startDate" />
+	      	<columnOverride column="LONG_VARCHAR_FIELD" jdbcType="VARCHAR" />       
+	    </table>
+	    <table tableName="tb_activity_thanks"  domainObjectName="ActivityThanks">
+	    	<property name="useActualColumnNames" value="false"/>
+	        <generatedKey column="enum_id" sqlStatement="mysql" identity="true" />
+	      	<columnOverride column="DATE_FIELD" property="startDate" />
+	      	<columnOverride column="LONG_VARCHAR_FIELD" jdbcType="VARCHAR" />       
+	    </table>
+	    <table tableName="tb_e_incr_inv_s_d"  domainObjectName="NetInvestment">
+	    	<property name="useActualColumnNames" value="true"/>
+	        <generatedKey column="enum_id" sqlStatement="mysql" identity="true" />
+	      	<columnOverride column="DATE_FIELD" property="startDate" />
+	      	<columnOverride column="LONG_VARCHAR_FIELD" jdbcType="VARCHAR" />       
+	    </table>
+	    <table tableName="tb_e_new_inv_s_d"  domainObjectName="AddInvestment">
+	    	<property name="useActualColumnNames" value="true"/>
+	        <generatedKey column="enum_id" sqlStatement="mysql" identity="true" />
+	      	<columnOverride column="DATE_FIELD" property="startDate" />
+	      	<columnOverride column="LONG_VARCHAR_FIELD" jdbcType="VARCHAR" />       
+	    </table>
+	    <table tableName="tb_e_jx_channel"  domainObjectName="PerformChannel">
+	    	<property name="useActualColumnNames" value="true"/>
+	        <generatedKey column="enum_id" sqlStatement="mysql" identity="true" />
+	      	<columnOverride column="DATE_FIELD" property="startDate" />
+	      	<columnOverride column="LONG_VARCHAR_FIELD" jdbcType="VARCHAR" />       
+	    </table>
+	    <table tableName="tb_jx_section"  domainObjectName="PerformanceResults">
+	    	<property name="useActualColumnNames" value="true"/>
+	        <generatedKey column="enum_id" sqlStatement="mysql" identity="true" />
+	      	<columnOverride column="DATE_FIELD" property="startDate" />
+	      	<columnOverride column="LONG_VARCHAR_FIELD" jdbcType="VARCHAR" />       
+	    </table>
+	    <table tableName="tb_e_new_cust_c_d"  domainObjectName="NewRegCustNum">
+	    	<property name="useActualColumnNames" value="true"/>
+	        <generatedKey column="enum_id" sqlStatement="mysql" identity="true" />
+	      	<columnOverride column="DATE_FIELD" property="startDate" />
+	      	<columnOverride column="LONG_VARCHAR_FIELD" jdbcType="VARCHAR" />       
+	    </table>
+	    <table tableName="tb_e_new_inv_c_d"  domainObjectName="NewInvestClient">
+	    	<property name="useActualColumnNames" value="true"/>
+	        <generatedKey column="enum_id" sqlStatement="mysql" identity="true" />
+	      	<columnOverride column="DATE_FIELD" property="startDate" />
+	      	<columnOverride column="LONG_VARCHAR_FIELD" jdbcType="VARCHAR" />       
+	    </table>
+     	    
+	    <table tableName="tb_org_info"  domainObjectName="OrgInfo">
+	    	<property name="useActualColumnNames" value="false"/>
+	        <generatedKey column="enum_id" sqlStatement="mysql" identity="true" />
+	      	<columnOverride column="DATE_FIELD" property="startDate" />
+	      	<columnOverride column="LONG_VARCHAR_FIELD" jdbcType="VARCHAR" />       
+	    </table>
+	    <table tableName="tb_activity_exhibition"  domainObjectName="ActivityExhibition">
+	    	<property name="useActualColumnNames" value="false"/>
+	        <generatedKey column="enum_id" sqlStatement="mysql" identity="true" />
+	      	<columnOverride column="DATE_FIELD" property="startDate" />
+	      	<columnOverride column="LONG_VARCHAR_FIELD" jdbcType="VARCHAR" />       
+	    </table>
+	    <table tableName="tb_activity_exhibition_err"  domainObjectName="ActivityExhibitionErr">
+	    	<property name="useActualColumnNames" value="false"/>
+	        <generatedKey column="enum_id" sqlStatement="mysql" identity="true" />
+	      	<columnOverride column="DATE_FIELD" property="startDate" />
+	      	<columnOverride column="LONG_VARCHAR_FIELD" jdbcType="VARCHAR" />       
+	    </table>
+	    <table tableName="tb_activity_exhibition_temp"  domainObjectName="ActivityExhibitionTemp">
+	    	<property name="useActualColumnNames" value="false"/>
+	        <generatedKey column="enum_id" sqlStatement="mysql" identity="true" />
+	      	<columnOverride column="DATE_FIELD" property="startDate" />
+	      	<columnOverride column="LONG_VARCHAR_FIELD" jdbcType="VARCHAR" />       
+	    </table>
+	    <table tableName="tb_activity_train"  domainObjectName="ActivityTrain">
+	    	<property name="useActualColumnNames" value="false"/>
+	        <generatedKey column="enum_id" sqlStatement="mysql" identity="true" />
+	      	<columnOverride column="DATE_FIELD" property="startDate" />
+	      	<columnOverride column="LONG_VARCHAR_FIELD" jdbcType="VARCHAR" />       
+	    </table>
+	    <table tableName="tb_activity_train_err"  domainObjectName="ActivityTrainErr">
+	    	<property name="useActualColumnNames" value="false"/>
+	        <generatedKey column="enum_id" sqlStatement="mysql" identity="true" />
+	      	<columnOverride column="DATE_FIELD" property="startDate" />
+	      	<columnOverride column="LONG_VARCHAR_FIELD" jdbcType="VARCHAR" />       
+	    </table>
+	    <table tableName="tb_activity_train_temp"  domainObjectName="ActivityTrainTemp">
+	    	<property name="useActualColumnNames" value="false"/>
+	        <generatedKey column="enum_id" sqlStatement="mysql" identity="true" />
+	      	<columnOverride column="DATE_FIELD" property="startDate" />
+	      	<columnOverride column="LONG_VARCHAR_FIELD" jdbcType="VARCHAR" />       
+	    </table>
+	    <table tableName="tb_office_expenses"  domainObjectName="OfficeExpenses">
+	    	<property name="useActualColumnNames" value="false"/>
+	        <generatedKey column="enum_id" sqlStatement="mysql" identity="true" />
+	      	<columnOverride column="DATE_FIELD" property="startDate" />
+	      	<columnOverride column="LONG_VARCHAR_FIELD" jdbcType="VARCHAR" />       
+	    </table>
+	    <table tableName="tb_office_expenses_err"  domainObjectName="OfficeExpensesErr">
+	    	<property name="useActualColumnNames" value="false"/>
+	        <generatedKey column="enum_id" sqlStatement="mysql" identity="true" />
+	      	<columnOverride column="DATE_FIELD" property="startDate" />
+	      	<columnOverride column="LONG_VARCHAR_FIELD" jdbcType="VARCHAR" />       
+	    </table>
+	    <table tableName="tb_office_expenses_temp"  domainObjectName="OfficeExpensesTemp">
+	    	<property name="useActualColumnNames" value="false"/>
+	        <generatedKey column="enum_id" sqlStatement="mysql" identity="true" />
+	      	<columnOverride column="DATE_FIELD" property="startDate" />
+	      	<columnOverride column="LONG_VARCHAR_FIELD" jdbcType="VARCHAR" />       
+	    </table>
+	    <table tableName="tb_template_info"  domainObjectName="TemplateInfo">
+	    	<property name="useActualColumnNames" value="false"/>
+	        <generatedKey column="enum_id" sqlStatement="mysql" identity="true" />
+	      	<columnOverride column="DATE_FIELD" property="startDate" />
+	      	<columnOverride column="LONG_VARCHAR_FIELD" jdbcType="VARCHAR" />       
+	    </table>-->
+	    <table tableName="tb_user_detail"  domainObjectName="UserDetail">
+	    	<property name="useActualColumnNames" value="false"/>
+	        <generatedKey column="enum_id" sqlStatement="mysql" identity="true" />
+	      	<columnOverride column="DATE_FIELD" property="startDate" />
+	      	<columnOverride column="LONG_VARCHAR_FIELD" jdbcType="VARCHAR" />       
+	    </table>
+
+	  
+	</context>
+</generatorConfiguration>
