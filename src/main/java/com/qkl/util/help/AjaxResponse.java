@@ -11,7 +11,7 @@ public class AjaxResponse implements Serializable {
 	
 	private static final long serialVersionUID = -7145191916102005908L;
 
-	private Integer errorCode;
+	private short errorCode;
 	
 	private String message;
 	
@@ -27,12 +27,12 @@ public class AjaxResponse implements Serializable {
 		this.success = success;
 	}
 
-	public Integer getErrorCode() {
+	public short getErrorCode() {
 		return errorCode;
 	}
 
-	public void setErrorCode(Integer errorCode) {
-		this.errorCode = errorCode;
+	public void setErrorCode(short paramError) {
+		this.errorCode = paramError;
 	}
 
 	public String getMessage() {
