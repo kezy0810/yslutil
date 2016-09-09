@@ -50,6 +50,14 @@ public class Validator {
      * 正则表达式：验证IP地址
      */
     public static final String REGEX_IP_ADDR = "(25[0-5]|2[0-4]\\d|[0-1]\\d{2}|[1-9]?\\d)";
+    /**
+     * 正则表达式：验证正整数
+     */
+    public static final String REGEX_NUMBER = "^[1-9][0-9]*$";
+    /**
+     * 正则表达式：验证整数
+     */
+    public static final String REGEX_INTEGER = "^[0-9]+$";
  
     /**
      * 校验用户名
@@ -130,7 +138,22 @@ public class Validator {
     public static boolean isIPAddr(String ipAddr) {
         return Pattern.matches(REGEX_IP_ADDR, ipAddr);
     }
- 
+    /**
+     * @describe:校验正整数
+     * @param str
+     * @return: boolean
+     */
+    public static boolean isNumber(String str) {
+        return Pattern.matches(REGEX_NUMBER, str);
+    }
+    /**
+     * @describe:校验整数
+     * @param str
+     * @return: boolean
+     */
+    public static boolean isInteger(String str) {
+        return Pattern.matches(REGEX_INTEGER, str);
+    }
     public static void main(String[] args) {
         String username = "fdsdfsdj";
         System.out.println(Validator.isUsername(username));
