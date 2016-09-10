@@ -51,9 +51,9 @@ public class Validator {
      */
     public static final String REGEX_IP_ADDR = "(25[0-5]|2[0-4]\\d|[0-1]\\d{2}|[1-9]?\\d)";
     /**
-     * 正则表达式：验证正整数
+     * 正则表达式：验证正整数1-6位
      */
-    public static final String REGEX_NUMBER = "^[1-9][0-9]*$";
+    public static final String REGEX_NUMBER = "^[1-9][0-9]{0,5}$";
     /**
      * 正则表达式：验证整数
      */
@@ -158,5 +158,9 @@ public class Validator {
         String username = "fdsdfsdj";
         System.out.println(Validator.isUsername(username));
         System.out.println(Validator.isChinese(username));
+        String str = "045611";
+        System.out.println(Validator.isNumber(str));
+        String phone = "18622114250";
+        System.out.println(Validator.isMobile(phone));
     }
 }
