@@ -15,6 +15,8 @@ public class AjaxResponse implements Serializable {
 	
 	private String message;
 	
+	private Page page;
+	
 	private Object data;
 	
 	private Boolean success;
@@ -55,6 +57,14 @@ public class AjaxResponse implements Serializable {
 	public String toString() {
 		return "AjaxResponse [errorCode=" + errorCode + ", message=" + message
 				+ ", data=" + data + ", success=" + success + "]";
+	}
+
+	public Page getPage() {
+		return page;
+	}
+
+	public void setPage(Page page) {
+		this.page = page;
 	}
 	
 }
