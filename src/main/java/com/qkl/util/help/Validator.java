@@ -53,7 +53,7 @@ public class Validator {
     /**
      * 正则表达式：验证正整数1-6位
      */
-    public static final String REGEX_NUMBER = "^[1-9][0-9]{0,5}$";
+    public static final String REGEX_NUMBER = "^[1-9]\\d{5}$";
     /**
      * 正则表达式：验证整数
      */
