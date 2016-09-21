@@ -53,7 +53,11 @@ public class Validator {
     /**
      * 正则表达式：验证正整数1-6位
      */
-    public static final String REGEX_NUMBER = "^[1-9]\\d{5}$";
+    public static final String REGEX_NUMBER6 = "^[1-9]\\d{5}$";
+    /**
+     * 正则表达式：验证正整数最高7位
+     */
+    public static final String REGEX_NUMBER_MAX7 = "^[1-9]\\d{0,6}$";
     /**
      * 正则表达式：验证整数
      */
@@ -139,12 +143,22 @@ public class Validator {
         return Pattern.matches(REGEX_IP_ADDR, ipAddr);
     }
     /**
-     * @describe:校验正整数
+     * @describe:校验6位正整数
      * @param str
      * @return: boolean
      */
-    public static boolean isNumber(String str) {
-        return Pattern.matches(REGEX_NUMBER, str);
+    public static boolean isNumber6(String str) {
+        return Pattern.matches(REGEX_NUMBER6, str);
+    }
+    /**
+     * @describe:最大7位正整数
+     * @author: zhangchunming
+     * @date: 2016年9月20日下午9:40:37
+     * @param str
+     * @return: boolean
+     */
+    public static boolean isNumberMax7(String str) {
+        return Pattern.matches(REGEX_NUMBER_MAX7, str);
     }
     /**
      * @describe:校验整数
@@ -158,9 +172,11 @@ public class Validator {
         String username = "fdsdfsdj";
         System.out.println(Validator.isUsername(username));
         System.out.println(Validator.isChinese(username));
-        String str = "045611";
-        System.out.println(Validator.isNumber(str));
+        String str = "10000000";
+        System.out.println(Validator.isNumberMax7(str));
         String phone = "18622114250";
         System.out.println(Validator.isMobile(phone));
+        
+        
     }
 }
