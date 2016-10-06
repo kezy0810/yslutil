@@ -17,7 +17,7 @@
 			<id>nexus</id>
 			<name>Team Nexus Repository</name>
 			<!--url>http://172.16.16.14:8081/nexus/content/groups/public/</url-->
-			<url>http://127.0.0.1:8081/nexus/content/groups/public/</url>
+			<url>http://192.168.100.90:8081/nexus/content/groups/public/</url>
 			<snapshots>
 				<enabled>true</enabled>
 				<updatePolicy>always</updatePolicy>
@@ -385,7 +385,7 @@
 				<snapshotRepository>
 					<id>nexus-snapshots</id>
 					<!--url>http://172.16.16.14:8081/nexus/content/repositories/snapshots/</url-->
-					<url>http://127.0.0.1:8081/nexus/content/repositories/snapshots/</url>
+					<url>http://192.168.100.90:8081/nexus/content/repositories/snapshots/</url>
 				</snapshotRepository>
 			</distributionManagement>
 		</profile>
