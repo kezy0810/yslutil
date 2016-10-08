@@ -62,6 +62,10 @@ public class Validator {
      * 正则表达式：验证整数
      */
     public static final String REGEX_INTEGER = "^[0-9]+$";
+    /**
+     * 正则表达式：验证金额
+     */
+    public static final String REGEX_MONEY = "^(([1-9]{1}\\d*)|([0]{1}))(\\.(\\d){0,4})?$";
  
     /**
      * 校验用户名
@@ -168,6 +172,16 @@ public class Validator {
     public static boolean isInteger(String str) {
         return Pattern.matches(REGEX_INTEGER, str);
     }
+    /**
+     * @describe:校验金额，最多可以保留四位小数
+     * @author: zhangchunming
+     * @date: 2016年10月8日下午4:39:24
+     * @param str
+     * @return: boolean
+     */
+    public static boolean isMoney4(String str) {
+        return Pattern.matches(REGEX_MONEY, str);
+    }
     public static void main(String[] args) {
         String username = "fdsdfsdj";
         System.out.println(Validator.isUsername(username));
@@ -176,6 +190,8 @@ public class Validator {
         System.out.println(Validator.isNumberMax7(str));
         String phone = "18622114250";
         System.out.println(Validator.isMobile(phone));
+        String money = "120.0123";
+        System.out.println(Validator.isMoney4(money));
         
         
     }
