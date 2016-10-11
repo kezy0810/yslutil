@@ -25,7 +25,7 @@ import com.alibaba.fastjson.JSONObject;
 
 public class APIHttpClient {
     // 接口地址  
-    private  String URL = "http://test.tfccwallet.com";  
+    private  String URL = "https://test.tfccwallet.com";  
     private  String API = "/api/tx/admin_make";  
     private HttpClient httpClient = null;  
     private PostMethod method = null;  
