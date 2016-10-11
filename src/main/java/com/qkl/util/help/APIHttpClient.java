@@ -31,7 +31,7 @@ public class APIHttpClient {
     private PostMethod method = null;  
     private long startTime = 0L;  
     private long endTime = 0L;  
-    private int status = 0; //0.成功 1.执行方法失败 2.协议错误 3.网络错误 
+    private int status = 0; //0.成功 1.执行方法失败 2.网络异常 
     //转账相关参数
     private static String pri = "693369e4bd1ce20bab88b461e0d47d5ae69bd1b7b3a33ffcd3fab801ba04a424";
     private static String salt = "c3810b35aaee551728f847f857ef78ca33f6ec4e7fdee034264e2919e471b606";
@@ -127,7 +127,7 @@ public class APIHttpClient {
                 System.out.println("转账接口调用------------------返回结果body="+body);
             } catch (Exception e) {  
                 e.printStackTrace();
-                status = 1;  
+                status = 2;  
             }finally{
                 System.out.println("转账接口调用------------------返回状态码status="+status);
             } 
@@ -231,6 +231,7 @@ public class APIHttpClient {
     public static String turnOut(String url,String api,String sender,String recipient,String amount,String pri,String salt,String admin_user){
         if(StringUtil.isEmpty(sender)||StringUtil.isEmpty(recipient)||StringUtil.isEmpty(amount)||
                 StringUtil.isEmpty(pri)||StringUtil.isEmpty(salt)||StringUtil.isEmpty(admin_user)){
+            System.out.println("转账接口-------参数有误");
             return null;
         }
         APIHttpClient httpClient = new APIHttpClient(url,api);  
