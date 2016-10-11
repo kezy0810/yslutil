@@ -178,7 +178,6 @@ public class APIHttpClient {
             APIHttpClient.pri = pri;  
         } 
         String data = orderId+status+value+ts;
-        APIHttpClient.data = APIHttpClient.salt+APIHttpClient.admin_user+APIHttpClient.ts;  
         String resSign = SHA256Util.sign(APIHttpClient.pri, data);
         if(sign.equals(resSign)){
            return true;
@@ -204,15 +203,18 @@ public class APIHttpClient {
         json.put("ts", ts);
         json.put("sign", getSign(pri,salt,admin_user));
         System.out.println(httpClient.post(json.toJSONString()));  */
-        APIHttpClient httpClient = new APIHttpClient(null,null);  
+       /* APIHttpClient httpClient = new APIHttpClient(null,null);  
         String str = "sign=c91e45447ddcece3118eeb72c3f55d4628d24f349b53489b55fd265d4fbd4322&ts=1476008251959&admin_user=sanapi&data={\"sender\":\"test02\",\"amount\":\"10\",\"recipient\":\"test01\"}";
         String sign = "c91e45447ddcece3118eeb72c3f55d4628d24f349b53489b55fd265d4fbd4322";
         String data = "{\"sender\":\"test02\",\"amount\":\"10\",\"recipient\":\"test01\"}";
         NameValuePair[] packDataParas = PackDataParas(sign, ts, admin_user, data);
-        System.out.println(httpClient.post(packDataParas));
+        System.out.println(httpClient.post(packDataParas));*/
         /*String data = "1234561101476090950801";
         String sign = SHA256Util.sign(APIHttpClient.pri, data);
         System.out.println("currentTimeMillis="+System.currentTimeMillis());  */
+        
+        //签名认证
+        validSign("23335","1" ,"10","1476187837548","8c12c33958fd8ca926cd40ab59ce32b422bae496cdb31dbfb8c497eb7c798e44","693369e4bd1ce20bab88b461e0d47d5ae69bd1b7b3a33ffcd3fab801ba04a424");
     } 
     /**
      * @describe:
@@ -243,4 +245,6 @@ public class APIHttpClient {
         String resStr = httpClient.post(packDataParas);
         return resStr;
     }
+    
+    
 }
