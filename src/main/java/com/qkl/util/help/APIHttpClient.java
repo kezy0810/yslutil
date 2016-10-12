@@ -25,13 +25,13 @@ import com.alibaba.fastjson.JSONObject;
 
 public class APIHttpClient {
     // 接口地址  
-    private  String URL = "https://test.tfccwallet.com";  
+    private  String URL = "http://test.tfccwallet.com";  
     private  String API = "/api/tx/admin_make";  
     private HttpClient httpClient = null;  
     private PostMethod method = null;  
     private long startTime = 0L;  
     private long endTime = 0L;  
-    private int status = 0; //0.成功 1.执行方法失败 2.网络异常 
+    private int status = 0; //1.成功 0.执行方法失败 2.网络异常 
     //转账相关参数
     private static String pri = "693369e4bd1ce20bab88b461e0d47d5ae69bd1b7b3a33ffcd3fab801ba04a424";
     private static String salt = "c3810b35aaee551728f847f857ef78ca33f6ec4e7fdee034264e2919e471b606";
@@ -61,7 +61,8 @@ public class APIHttpClient {
     } 
  // 封装参数
     public static NameValuePair[] PackDataParas(String sign, String ts,String admin_user,String data){
-        NameValuePair[] dataPair = {//提交短信
+        System.out.println("发送参数PackDataParas：sign="+sign+"---ts="+ts+"---admin_user="+admin_user+"---data="+data);
+        NameValuePair[] dataPair = {
                 new NameValuePair("sign", sign), 
                 new NameValuePair("ts", ts),
                 new NameValuePair("admin_user", admin_user), 
@@ -118,10 +119,10 @@ public class APIHttpClient {
                 
                 if (statusCode != HttpStatus.SC_OK) {  
                     System.err.println("-------------Method failed:" + method.getStatusLine());  
-                    status = 1;  
+                    status = 0;  
                 }  
                 if(statusCode == HttpStatus.SC_OK){
-                    status = 0;  
+                    status = 1;  
                 }
                 body =method.getResponseBodyAsString();
                 System.out.println("转账接口调用------------------返回结果body="+body);
@@ -203,18 +204,18 @@ public class APIHttpClient {
         json.put("ts", ts);
         json.put("sign", getSign(pri,salt,admin_user));
         System.out.println(httpClient.post(json.toJSONString()));  */
-       /* APIHttpClient httpClient = new APIHttpClient(null,null);  
-        String str = "sign=c91e45447ddcece3118eeb72c3f55d4628d24f349b53489b55fd265d4fbd4322&ts=1476008251959&admin_user=sanapi&data={\"sender\":\"test02\",\"amount\":\"10\",\"recipient\":\"test01\"}";
+        APIHttpClient httpClient = new APIHttpClient(null,null);  
+//        String str = "sign=c91e45447ddcece3118eeb72c3f55d4628d24f349b53489b55fd265d4fbd4322&ts=1476008251959&admin_user=sanapi&data={\"sender\":\"test02\",\"amount\":\"10\",\"recipient\":\"test01\"}";
         String sign = "c91e45447ddcece3118eeb72c3f55d4628d24f349b53489b55fd265d4fbd4322";
         String data = "{\"sender\":\"test02\",\"amount\":\"10\",\"recipient\":\"test01\"}";
         NameValuePair[] packDataParas = PackDataParas(sign, ts, admin_user, data);
-        System.out.println(httpClient.post(packDataParas));*/
+        System.out.println(httpClient.post(packDataParas));
         /*String data = "1234561101476090950801";
         String sign = SHA256Util.sign(APIHttpClient.pri, data);
         System.out.println("currentTimeMillis="+System.currentTimeMillis());  */
         
         //签名认证
-        validSign("23335","1" ,"10","1476187837548","8c12c33958fd8ca926cd40ab59ce32b422bae496cdb31dbfb8c497eb7c798e44","693369e4bd1ce20bab88b461e0d47d5ae69bd1b7b3a33ffcd3fab801ba04a424");
+//        validSign("23335","1" ,"10","1476187837548","8c12c33958fd8ca926cd40ab59ce32b422bae496cdb31dbfb8c497eb7c798e44","693369e4bd1ce20bab88b461e0d47d5ae69bd1b7b3a33ffcd3fab801ba04a424");
     } 
     /**
      * @describe:
