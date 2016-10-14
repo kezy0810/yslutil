@@ -2822,6 +2822,8 @@ public class DateUtil
 			String reg_time = "2015-04-17 00:00:00";
 			Date date = DateUtil.getDateFromString(reg_time);
 			System.out.println(date);
+			System.out.println("getCurrDateTime="+getCurrDateTime());
+			
 			
 		}
 		catch (Exception ex)
