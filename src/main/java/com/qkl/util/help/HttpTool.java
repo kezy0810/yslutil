@@ -53,6 +53,7 @@ public class HttpTool {
                 System.out.println("短信提交成功");
                 return true;
             }else{
+                System.out.println("短信提交失败");
                 return false;
             }
             
