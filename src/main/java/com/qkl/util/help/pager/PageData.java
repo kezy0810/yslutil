@@ -1,5 +1,6 @@
 package com.qkl.util.help.pager;
 
+import java.io.Serializable;
 import java.io.UnsupportedEncodingException;
 import java.util.Collection;
 import java.util.HashMap;
@@ -9,10 +10,13 @@ import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 
-public class PageData extends HashMap implements Map{
+public class PageData extends HashMap implements Map,Serializable{
 	
-	private static final long serialVersionUID = 1L;
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -2035540201156941566L;
 	Map map = null;
 	HttpServletRequest request;
 	
