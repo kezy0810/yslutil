@@ -27,6 +27,8 @@ public class CacheManager {
 	
 	@Autowired
 	private ShardedJedisPool jedisPool;
+	
+	private int defaultTimeOut = 60*60*24;//默认时间一天
 
 	public void setJedisPool(ShardedJedisPool jedisPool) {
 		this.jedisPool = jedisPool;
@@ -95,6 +97,8 @@ public class CacheManager {
 			jedis.set(getKey(key), object2Bytes(obj));
 			if (outTime != 0) {
 				jedis.expire(getKey(key), outTime);
+			}else{
+			    jedis.expire(getKey(key), defaultTimeOut);
 			}
 		} catch (Exception e) {
 			flag = false;

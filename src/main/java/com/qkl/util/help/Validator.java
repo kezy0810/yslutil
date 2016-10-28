@@ -55,6 +55,10 @@ public class Validator {
      */
     public static final String REGEX_NUMBER6 = "^[1-9]\\d{5}$";
     /**
+     * 正则表达式：验证正整数6位
+     */
+    public static final String REGEX_6NUMBER = "^[1-9]{6}$";
+    /**
      * 正则表达式：验证正整数最高7位
      */
     public static final String REGEX_NUMBER_MAX7 = "^[1-9]\\d{0,6}$";
@@ -147,12 +151,20 @@ public class Validator {
         return Pattern.matches(REGEX_IP_ADDR, ipAddr);
     }
     /**
-     * @describe:校验6位正整数
+     * @describe:校验1-6位正整数
      * @param str
      * @return: boolean
      */
     public static boolean isNumber6(String str) {
         return Pattern.matches(REGEX_NUMBER6, str);
+    }
+    /**
+     * @describe:校验6位正整数
+     * @param str
+     * @return: boolean
+     */
+    public static boolean is6Number(String str) {
+        return Pattern.matches(REGEX_6NUMBER, str);
     }
     /**
      * @describe:最大7位正整数
@@ -182,6 +194,38 @@ public class Validator {
     public static boolean isMoney4(String str) {
         return Pattern.matches(REGEX_MONEY, str);
     }
+    /**|
+     * @describe:密码6-16位数,由数字，字母，特殊符号组成
+     * @author: zhangchunming
+     * @date: 2016年10月24日下午4:02:33
+     * @param password
+     * @return: boolean
+     */
+    public static boolean isPassword2(String str) {
+        boolean is=true;
+        //去除前后空格
+        str=str.replaceAll("(^\\s*)|(\\s*$)","");
+        //位数不对，设置为false
+        if(str.length()<6 || str.length()>16){
+            is=false;   
+        };
+        //全是数字
+        String sz="^[0-9]{1,}$";
+        //全是字母
+        String zm="^[a-zA-Z]{1,}$";
+        //全是特殊字符;
+        String ts="^[`~!@#\\$%\\^\\&\\*\\(\\)_\\+<>\\?:\"\\{\\},\\.\\\\/\\;'\\[\\]]{1,}$"; 
+        if(Pattern.matches(sz,str)){
+            is=false;       
+        };
+        if(Pattern.matches(zm,str)){
+            is=false;       
+        };
+        if(Pattern.matches(ts,str)){
+            is=false;       
+        };
+        return is;  
+    }
     public static void main(String[] args) {
         String username = "fdsdfsdj";
         System.out.println(Validator.isUsername(username));
@@ -192,6 +236,8 @@ public class Validator {
         System.out.println(Validator.isMobile(phone));
         String money = "120.0123";
         System.out.println(Validator.isMoney4(money));
+        String password = " alkg  ";
+        password=password.replaceAll("(^\\s*)|(\\s*$)","");
         
         
     }

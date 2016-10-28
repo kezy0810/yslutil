@@ -1511,4 +1511,10 @@ public class StringUtil
         }
         return result.toString();
     }
+    public static boolean isNotEmpty(String str) {
+        if (str != null && !str.equals("")&&!str.equals("null"))
+            return true;
+        else
+            return false;
+    }
 }
