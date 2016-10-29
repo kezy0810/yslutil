@@ -18,6 +18,11 @@ public class Validator {
      * 正则表达式：验证密码
      */
     public static final String REGEX_PASSWORD = "^[a-zA-Z0-9]{6,16}$";
+    
+    /**
+     * 正则表达式：验证密码
+     */
+    public static final String REGEX_PASSWORD_LETTER_NUMBER = "^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,16}$";
  
     /**
      * 正则表达式：验证手机号
@@ -89,6 +94,14 @@ public class Validator {
      */
     public static boolean isPassword(String password) {
         return Pattern.matches(REGEX_PASSWORD, password);
+    }
+    /**
+     * 校验密码(由字母和数字组成)
+     * @param password
+     * @return 校验通过返回true，否则返回false
+     */
+    public static boolean isPasswordByLetterAndNum(String password) {
+        return Pattern.matches(REGEX_PASSWORD_LETTER_NUMBER, password);
     }
  
     /**
