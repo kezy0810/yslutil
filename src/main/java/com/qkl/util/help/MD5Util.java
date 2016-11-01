@@ -57,6 +57,24 @@ public class MD5Util {
         return resultString;
     }
 
+    public static String MD5Encode(String origin, String charsetname) {  
+        String resultString = null;  
+        try {  
+            resultString = new String(origin);  
+            MessageDigest md = MessageDigest.getInstance("MD5");  
+            if (charsetname == null || "".equals(charsetname))  
+                resultString = byteToString(md.digest(resultString  
+                        .getBytes()));  
+            else  
+                resultString = byteToString(md.digest(resultString  
+                        .getBytes(charsetname)));  
+        } catch (Exception exception) {  
+        }  
+        return resultString;  
+    } 
+    
+    
+    
     public static void main(String[] args) {
     	MD5Util getMD5 = new MD5Util();
         System.out.println(getMD5.getMd5Code("000000"));

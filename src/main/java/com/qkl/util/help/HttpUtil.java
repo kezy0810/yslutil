@@ -10,6 +10,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.net.URLConnection;
 import java.util.regex.Pattern;
 /**
  * Http操作辅助工具
@@ -17,6 +18,8 @@ import java.util.regex.Pattern;
 public class HttpUtil {
     private final static String url = "http://a1.easemob.com/dongadong/dongadong/users";
     private final static String params = "{\"username\":\"goucai5\",\"password\":\"goucai5\",\"nickname\":\"goucai5\"}";
+    private final static int CONNECT_TIMEOUT = 5000; // in milliseconds  
+    private final static String DEFAULT_ENCODING = "UTF-8";  
 	/**
 	 * 发送GET请求数据
 	 * @param get_url url地址
@@ -145,6 +148,45 @@ public class HttpUtil {
 			connection.disconnect();
 		}
 	}
+	
+	public static String postData(String urlStr, String data, String contentType){  
+        BufferedReader reader = null;  
+        try {  
+            URL url = new URL(urlStr);  
+            URLConnection conn = url.openConnection();  
+            conn.setDoOutput(true);  
+            conn.setConnectTimeout(CONNECT_TIMEOUT);  
+            conn.setReadTimeout(CONNECT_TIMEOUT);  
+            if(contentType != null)  
+                conn.setRequestProperty("content-type", contentType);  
+            OutputStreamWriter writer = new OutputStreamWriter(conn.getOutputStream(), DEFAULT_ENCODING);  
+            if(data == null)  
+                data = "";  
+            writer.write(data);   
+            writer.flush();  
+            writer.close();    
+  
+            reader = new BufferedReader(new InputStreamReader(conn.getInputStream(), DEFAULT_ENCODING));  
+            StringBuilder sb = new StringBuilder();  
+            String line = null;  
+            while ((line = reader.readLine()) != null) {  
+                sb.append(line);  
+                sb.append("\r\n");  
+            }  
+            return sb.toString();  
+        } catch (IOException e) {  
+            //logger.error("Error connecting to " + urlStr + ": " + e.getMessage());  
+            System.out.println("Error connecting to " + urlStr + ": " + e.getMessage());  
+        } finally {  
+            try {  
+                if (reader != null)  
+                    reader.close();  
+            } catch (IOException e) {  
+            }  
+        }  
+        return null;  
+    } 
+	
 	/*
 	 * 过滤掉html里不安全的标签，不允许用户输入这些标签
 	 */
