@@ -31,4 +31,11 @@ public class OrderGenerater {
         sb.append(sf.format(new Date())).append(RandomStringUtils.randomNumeric(6)).append(user_code);
         return sb.toString();
     }
+    public static void main(String[] args) {
+        StringBuilder sb = new StringBuilder();
+        SimpleDateFormat sf = new SimpleDateFormat("yyMMddHHmmss");
+        String user_code = null;
+        sb.append(sf.format(new Date())).append(RandomStringUtils.randomNumeric(6)).append(user_code);
+        System.out.println(sb.toString());
+    }
 }
