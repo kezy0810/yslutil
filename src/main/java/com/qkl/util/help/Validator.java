@@ -72,9 +72,13 @@ public class Validator {
      */
     public static final String REGEX_INTEGER = "^[0-9]+$";
     /**
+     * 正则表达式：验证金额,最多保留4位小数
+     */
+    public static final String REGEX_MONEY4 = "^(([1-9]{1}\\d*)|([0]{1}))(\\.(\\d){0,4})?$";
+    /**
      * 正则表达式：验证金额
      */
-    public static final String REGEX_MONEY = "^(([1-9]{1}\\d*)|([0]{1}))(\\.(\\d){0,4})?$";
+    public static final String REGEX_MONEY = "^([1-9]{1}\\d*)$";
  
     /**
      * 校验用户名
@@ -205,6 +209,16 @@ public class Validator {
      * @return: boolean
      */
     public static boolean isMoney4(String str) {
+        return Pattern.matches(REGEX_MONEY4, str);
+    }
+    /**
+     * @describe:校验金额
+     * @author: zhangchunming
+     * @date: 2016年11月1日下午4:13:42
+     * @param str
+     * @return: boolean
+     */
+    public static boolean isMoney(String str) {
         return Pattern.matches(REGEX_MONEY, str);
     }
     /**|
