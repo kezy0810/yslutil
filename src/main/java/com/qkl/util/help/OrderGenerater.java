@@ -19,23 +19,23 @@ public class OrderGenerater {
      * @describe:订单号规则：日期+6位随机数+邀请码（唯一）
      * @author: zhangchunming
      * @date: 2016年11月1日下午5:47:23
-     * @param user_code
+     * @param usercode
      * @return: String
      */
-    public static String generateOrderNo(String user_code){
-        if("".equals(user_code)||user_code == null){
+    public static String generateOrderNo(String usercode){
+        if("".equals(usercode)||usercode == null){
             return null;
         }
         StringBuilder sb = new StringBuilder();
         SimpleDateFormat sf = new SimpleDateFormat("yyMMddHHmmss");
-        sb.append(sf.format(new Date())).append(RandomStringUtils.randomNumeric(6)).append(user_code);
+        sb.append(sf.format(new Date())).append(RandomStringUtils.randomNumeric(6)).append(usercode);
         return sb.toString();
     }
     public static void main(String[] args) {
         StringBuilder sb = new StringBuilder();
         SimpleDateFormat sf = new SimpleDateFormat("yyMMddHHmmss");
-        String user_code = null;
-        sb.append(sf.format(new Date())).append(RandomStringUtils.randomNumeric(6)).append(user_code);
+        String usercode = null;
+        sb.append(sf.format(new Date())).append(RandomStringUtils.randomNumeric(6)).append(usercode);
         System.out.println(sb.toString());
     }
 }
