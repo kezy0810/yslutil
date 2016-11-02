@@ -31,11 +31,28 @@ public class OrderGenerater {
         sb.append(sf.format(new Date())).append(RandomStringUtils.randomNumeric(6)).append(usercode);
         return sb.toString();
     }
+    /**
+     * @describe:消费码规则：日期+邀请码（唯一）+6位随机数
+     * @author: lishuo
+     * @date: 2016年11月1日下午5:47:23
+     * @param usercode
+     * @return: String
+     */
+    public static String generateOrderCode(String usercode){
+        if("".equals(usercode)||usercode == null){
+            return null;
+        }
+        StringBuilder sb = new StringBuilder();
+        SimpleDateFormat sf = new SimpleDateFormat("yyMMddHHmmss");
+        sb.append(sf.format(new Date())).append(usercode).append(RandomStringUtils.randomNumeric(6));
+        return sb.toString();
+    }
     public static void main(String[] args) {
         StringBuilder sb = new StringBuilder();
         SimpleDateFormat sf = new SimpleDateFormat("yyMMddHHmmss");
         String usercode = null;
-        sb.append(sf.format(new Date())).append(RandomStringUtils.randomNumeric(6)).append(usercode);
+        //sb.append(sf.format(new Date())).append(RandomStringUtils.randomNumeric(6)).append(usercode);
+        sb.append(sf.format(new Date())).append(usercode).append(RandomStringUtils.randomNumeric(6));
         System.out.println(sb.toString());
     }
 }
