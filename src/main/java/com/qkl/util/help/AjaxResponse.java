@@ -2,6 +2,7 @@ package com.qkl.util.help;
 
 import java.io.Serializable;
 
+
 /**
  * 封装ajax返回
  * @author guowei
