@@ -32,6 +32,23 @@ public class OrderGenerater {
         return sb.toString();
     }
     /**
+     * @describe:生成流水号
+     * @author: zhangchunming
+     * @date: 2016年11月4日下午2:12:12
+     * @param usercode 邀请码 唯一
+     * @param acc_no 交易类型 与表acc_def中acc_no对应
+     * @return: String
+     */
+    public static String generateFlowNo(String usercode,String acc_no){
+        if(StringUtil.isEmpty(usercode)||StringUtil.isEmpty(acc_no)){
+            return null;
+        }
+        StringBuilder sb = new StringBuilder();
+        SimpleDateFormat sf = new SimpleDateFormat("yyMMddHHmmss");
+        sb.append(sf.format(new Date())).append(RandomStringUtils.randomNumeric(6)).append(acc_no).append(usercode);
+        return sb.toString();
+    }
+    /**
      * @describe:消费码规则：日期+邀请码（唯一）+6位随机数
      * @author: lishuo
      * @date: 2016年11月1日下午5:47:23
