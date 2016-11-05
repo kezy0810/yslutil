@@ -56,7 +56,7 @@ public class InternetUtil {
     public static Long getRemotePort(final HttpServletRequest request){
         try{
             String port = request.getHeader("remote-port");
-            if(StringUtil.isNotEmpty(port )) {
+            if(StringUtil.isNotEmpty(port)) {
                 try{
                     return Long.parseLong(port);
                 }catch(NumberFormatException ex){
