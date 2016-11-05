@@ -132,7 +132,7 @@ public class QRCodeUtil {
         BufferedImage image = QRCodeUtil.createImage(content, imgPath, 
                 needCompress); 
         mkdirs(destPath); 
-        String file = new Date().getTime()+ new Random().nextInt(999)+"";//"jpg" 
+        String file = new Date().getTime()+ new Random().nextInt(999)+".png";//"png" 
         ImageIO.write(image, FORMAT_NAME, new File(destPath+"/"+file)); 
         return file;
     } 
@@ -201,8 +201,8 @@ public class QRCodeUtil {
      *            存储地址
      * @throws Exception
      */ 
-    public static void encode(String content, String destPath) throws Exception { 
-        QRCodeUtil.encode(content, null, destPath, false); 
+    public static String encode(String content, String destPath) throws Exception { 
+        return QRCodeUtil.encode(content, null, destPath, false); 
     } 
    
     /**
