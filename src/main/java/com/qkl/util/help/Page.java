@@ -1,10 +1,16 @@
 package com.qkl.util.help;
 
+import java.io.Serializable;
+
 import com.qkl.util.help.pager.PageData;
 
 
-public class Page {
+public class Page implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 3907286333212865643L;
 	private int showCount; //每页显示记录数
 	private int totalPage;		//总页数
 	private int totalResult;	//总记录数
