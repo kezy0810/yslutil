@@ -1,17 +1,23 @@
 package com.qkl.util.help;
 
+import java.io.Serializable;
+
 import com.qkl.util.help.pager.PageData;
 
 
-public class Page {
+public class Page implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 3907286333212865643L;
 	private int showCount; //每页显示记录数
 	private int totalPage;		//总页数
 	private int totalResult;	//总记录数
 	private int currentPage;	//当前页
 	private int currentResult;	//当前记录起始索引
 	private boolean entityOrField;	//true:需要分页的地方，传入的参数就是Page实体；false:需要分页的地方，传入的参数所代表的实体拥有Page属性
-	private String pageStr;		//最终页面显示的底部翻页导航，详细见：getPageStr();
+//	private String pageStr;		//最终页面显示的底部翻页导航，详细见：getPageStr();
 	private PageData pd = new PageData();
 	
 
@@ -64,7 +70,7 @@ public class Page {
 		this.currentPage = currentPage;
 	}
 	
-	public String getPageStr() {
+	/*public String getPageStr() {
 		StringBuffer sb = new StringBuffer();
 		if(totalResult>0){
 			sb.append("	<ul>\n");
@@ -137,7 +143,7 @@ public class Page {
 			sb.append("		var url = document.location+'';\n");
 			sb.append("		if(url.indexOf('?')>-1){\n");
 			sb.append("			if(url.indexOf('currentPage')>-1){\n");
-			sb.append("			 var reg = /currentPage=\\dg*/;\n");
+			sb.append("			 var reg = /currentPage=\\dg*//*;\n");
 					sb.append("				url = url.replace(reg,'currentPage=');\n");
 			sb.append("			}else{\n");
 			sb.append("				url += \"&"+(entityOrField?"currentPage":"page.currentPage")+"=\";\n");
@@ -161,7 +167,7 @@ public class Page {
 			sb.append("		var url = document.location+'';\n");
 			sb.append("		if(url.indexOf('?')>-1){\n");
 			sb.append("			if(url.indexOf('currentPage')>-1){\n");
-			sb.append("			var reg = /currentPage=\\d*/g;\n");
+			sb.append("			var reg = /currentPage=\\d*//*g;\n");
 			sb.append("				url = url.replace(reg,'currentPage=');\n");
 			sb.append("			}else{\n");
 			sb.append("				url += \"1&"+(entityOrField?"currentPage":"page.currentPage")+"=\";\n");
@@ -181,7 +187,7 @@ public class Page {
 			sb.append("}\n");
 			sb.append("</script>\n");
 			
-		/*	//换页函数
+		*//*	//换页函数
 			sb.append("function nextPage(page){");
 //			sb.append(" window.parent.jzts();");
 			sb.append("	if(true && document.forms[0]){\n");
@@ -195,8 +201,8 @@ public class Page {
 			sb.append("		var url = document.location+'';\n");
 			sb.append("		if(url.indexOf('?')>-1){\n");
 			sb.append("			if(url.indexOf('currentPage')>-1){\n");
-			sb.append("				var reg = /currentPage=\\dg;\n");*/ //后面是正确代码  var reg = /currentPage=\\dg*/;\n");
-			/*		sb.append("				url = url.replace(reg,'currentPage=');\n");
+			sb.append("				var reg = /currentPage=\\dg;\n");*//* //后面是正确代码  var reg = /currentPage=\\dg*//*;\n");
+			*//*		sb.append("				url = url.replace(reg,'currentPage=');\n");
 			sb.append("			}else{\n");
 			sb.append("				url += \"&"+(entityOrField?"currentPage":"page.currentPage")+"=\";\n");
 			sb.append("			}\n");
@@ -220,8 +226,8 @@ public class Page {
 			sb.append("		var url = document.location+'';\n");
 			sb.append("		if(url.indexOf('?')>-1){\n");
 			sb.append("			if(url.indexOf('currentPage')>-1){\n");
-			sb.append("				var reg = /currentPage=\\dg;\n"); */  //后面是正确代码var reg = /currentPage=\\d*/g;\n");
-	/*		sb.append("				url = url.replace(reg,'currentPage=');\n");
+			sb.append("				var reg = /currentPage=\\dg;\n"); *//*  //后面是正确代码var reg = /currentPage=\\d*//*g;\n");
+	*//*		sb.append("				url = url.replace(reg,'currentPage=');\n");
 			sb.append("			}else{\n");
 			sb.append("				url += \"1&"+(entityOrField?"currentPage":"page.currentPage")+"=\";\n");
 			sb.append("			}\n");
@@ -238,7 +244,7 @@ public class Page {
 			sb.append("if(isNaN(Number(toPaggeVlue))){document.getElementById(\"toGoPage\").value=1;return;}");
 			sb.append("nextPage(toPaggeVlue);");
 			sb.append("}\n");
-			sb.append("</script>\n");*/
+			sb.append("</script>\n");*//*
 		}
 		pageStr = sb.toString();
 		return pageStr;
@@ -247,7 +253,7 @@ public class Page {
 	public void setPageStr(String pageStr) {
 		this.pageStr = pageStr;
 	}
-	
+		*/
 	public int getShowCount() {
 		return showCount;
 	}
@@ -256,7 +262,7 @@ public class Page {
 		
 		this.showCount = showCount;
 	}
-	
+
 	public int getCurrentResult() {
 		currentResult = (getCurrentPage()-1)*getShowCount();
 		if(currentResult<0)

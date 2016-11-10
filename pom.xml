@@ -378,6 +378,13 @@
 				<!-- <tagBase>scm:git:ssh://git@192.168.10.105:util/neowave_health_util.git/refs/tags/</tagBase> -->
 				<!-- </configuration> -->
 			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<configuration>
+					<testFailureIgnore>true</testFailureIgnore>
+				</configuration>
+			</plugin>
 		</plugins>
 	</build>
 	<profiles>
