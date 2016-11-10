@@ -32,9 +32,9 @@ public class Page implements Serializable{
 
 	public Page(){
 		try {
-			this.showCount = 10;
+			this.showCount = 15;
 		} catch (Exception e) {
-			this.showCount = 10;
+			this.showCount = 15;
 		}
 	}
 	
