@@ -111,7 +111,7 @@ public class SMSUtil {
             //new Testdd("---" + i).start();
         //}
         System.out.println("start tiime:"+new SimpleDateFormat("yyyy-MM-dd HH:mm:ss:SSS").format(new Date(System.currentTimeMillis())));
-        SMSUtil.sendSMS_ChinaNet1("18618382548",  "欢迎您注册三界生活账号，您的验证码是：123456，打死也不能告诉别人哦！",vcode_productid);
+        SMSUtil.sendSMS_ChinaNet1("18618382548",  "欢迎您注册三界生活账号，您的验证码是：654321，打死也不能告诉别人哦！",vcode_productid);
         System.out.println("start tiime:"+new SimpleDateFormat("yyyy-MM-dd HH:mm:ss:SSS").format(new Date(System.currentTimeMillis())));
 
     }
