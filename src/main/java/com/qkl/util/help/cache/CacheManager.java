@@ -76,7 +76,8 @@ public class CacheManager {
 			logger.error(e.getLocalizedMessage());
 			return false;
 		} finally {
-			jedis.disconnect();
+			jedisPool.returnResource(jedis);
+//			jedis.disconnect();
 		}
 	}
 
