@@ -254,17 +254,17 @@ public class Validator {
         return is;  
     }
     public static void main(String[] args) {
-        String username = "fdsdfsdj";
+       /* String username = "fdsdfsdj";
         System.out.println(Validator.isUsername(username));
         System.out.println(Validator.isChinese(username));
         String str = "10000000";
-        System.out.println(Validator.isNumberMax7(str));
-        String phone = "18622114250";
-        System.out.println(Validator.isMobile(phone));
-        String money = "120.0123";
+        System.out.println(Validator.isNumberMax7(str));*/
+        String phone = "15632424803";
+       System.out.println(Validator.isMobile(phone));
+       /* String money = "120.0123";
         System.out.println(Validator.isMoney4(money));
         String password = " alkg  ";
-        password=password.replaceAll("(^\\s*)|(\\s*$)","");
+        password=password.replaceAll("(^\\s*)|(\\s*$)","");*/
         
         
     }
