@@ -11,7 +11,7 @@ public class Page implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = 3907286333212865643L;
-	private int showCount; //每页显示记录数
+	private int showCount = 10; //每页显示记录数
 	private int totalPage;		//总页数
 	private int totalResult;	//总记录数
 	private int currentPage;	//当前页
@@ -32,9 +32,9 @@ public class Page implements Serializable{
 
 	public Page(){
 		try {
-			this.showCount = 15;
+			this.showCount = 10;
 		} catch (Exception e) {
-			this.showCount = 15;
+			this.showCount = 10;
 		}
 	}
 	

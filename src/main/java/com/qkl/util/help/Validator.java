@@ -62,7 +62,7 @@ public class Validator {
     /**
      * 正则表达式：验证正整数6位
      */
-    public static final String REGEX_6NUMBER = "^[1-9]{6}$";
+    public static final String REGEX_6NUMBER = "^[0-9]{6}$";
     /**
      * 正则表达式：验证正整数最高7位
      */
@@ -260,7 +260,8 @@ public class Validator {
         String str = "10000000";
         System.out.println(Validator.isNumberMax7(str));*/
         String phone = "15632424803";
-       System.out.println(Validator.isMobile(phone));
+       System.out.println(Validator.isMobile(phone));//111107
+       System.out.println(Validator.is6Number("111102"));
        /* String money = "120.0123";
         System.out.println(Validator.isMoney4(money));
         String password = " alkg  ";

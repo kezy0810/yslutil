@@ -1,31 +1,26 @@
 package com.qkl.util.help;
 
-import java.io.IOException;
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.nio.charset.Charset;
-import java.util.ArrayList;
-import java.util.List;
+import java.io.ByteArrayOutputStream;
+import java.io.DataOutputStream;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.net.URLEncoder;
+
+import javax.net.ssl.HostnameVerifier;
+import javax.net.ssl.HttpsURLConnection;
+import javax.net.ssl.SSLSession;
+import javax.net.ssl.TrustManager;
+import javax.net.ssl.X509TrustManager;
 
 import org.apache.commons.httpclient.HttpClient;
-import org.apache.commons.httpclient.HttpException;
 import org.apache.commons.httpclient.HttpStatus;
 import org.apache.commons.httpclient.NameValuePair;
 import org.apache.commons.httpclient.methods.PostMethod;
-import org.apache.http.client.entity.UrlEncodedFormEntity;
-import org.apache.http.message.BasicNameValuePair;
-import org.apache.http.protocol.HTTP;
-import org.apache.http.util.EntityUtils;
-import org.dom4j.Document;
-import org.dom4j.DocumentException;
-import org.dom4j.DocumentHelper;
-import org.dom4j.Element;
-
-import com.alibaba.fastjson.JSONObject;
-
 public class APIHttpClient {
     // 接口地址  
     private  String URL = "http://test.tfccwallet.com";  
+    private  String https_url = "https://test.tfccwallet.com";  
     private  String API = "/api/tx/admin_make";  
     private HttpClient httpClient = null;  
     private PostMethod method = null;  
@@ -39,9 +34,12 @@ public class APIHttpClient {
     private static String sign = "";
     private static String data = "";
     private static String ts = String.valueOf(System.currentTimeMillis());
+    
+    public APIHttpClient(){
+        
+    }
     /** 
      * 接口地址 
-     *  
      * @param url 
      */  
     public APIHttpClient(String url,String api) {  
@@ -204,18 +202,19 @@ public class APIHttpClient {
         json.put("ts", ts);
         json.put("sign", getSign(pri,salt,admin_user));
         System.out.println(httpClient.post(json.toJSONString()));  */
-        APIHttpClient httpClient = new APIHttpClient(null,null);  
+        APIHttpClient httpClient = new APIHttpClient();  
 //        String str = "sign=c91e45447ddcece3118eeb72c3f55d4628d24f349b53489b55fd265d4fbd4322&ts=1476008251959&admin_user=sanapi&data={\"sender\":\"test02\",\"amount\":\"10\",\"recipient\":\"test01\"}";
         String sign = "c91e45447ddcece3118eeb72c3f55d4628d24f349b53489b55fd265d4fbd4322";
         String data = "{\"sender\":\"test02\",\"amount\":\"10\",\"recipient\":\"test01\"}";
         NameValuePair[] packDataParas = PackDataParas(sign, ts, admin_user, data);
-        System.out.println(httpClient.post(packDataParas));
+//        System.out.println(httpClient.post(packDataParas));
         /*String data = "1234561101476090950801";
         String sign = SHA256Util.sign(APIHttpClient.pri, data);
         System.out.println("currentTimeMillis="+System.currentTimeMillis());  */
         
         //签名认证
 //        validSign("23335","1" ,"10","1476187837548","8c12c33958fd8ca926cd40ab59ce32b422bae496cdb31dbfb8c497eb7c798e44","693369e4bd1ce20bab88b461e0d47d5ae69bd1b7b3a33ffcd3fab801ba04a424");
+        httpClient.httpsPost(sign, ts, admin_user, data);
     } 
     /**
      * @describe:
@@ -246,6 +245,95 @@ public class APIHttpClient {
         String resStr = httpClient.post(packDataParas);
         return resStr;
     }
+    /**
+     * @describe:https请求，转出三姐宝至钱包
+     * @author: zhangchunming
+     * @date: 2016年11月19日下午3:43:24
+     * @param url
+     * @param api
+     * @param sender
+     * @param recipient
+     * @param amount
+     * @param pri
+     * @param salt
+     * @param admin_user
+     * @return: String
+     */
+    public static String httpsTurnOut(String url,String api,String sender,String recipient,String amount,String pri,String salt,String admin_user){
+        if(StringUtil.isEmpty(sender)||StringUtil.isEmpty(recipient)||StringUtil.isEmpty(amount)||
+                StringUtil.isEmpty(pri)||StringUtil.isEmpty(salt)||StringUtil.isEmpty(admin_user)){
+            System.out.println("转账接口-------参数有误");
+            return null;
+        }
+        APIHttpClient httpClient = new APIHttpClient(url,api);  
+//        String sign = "c91e45447ddcece3118eeb72c3f55d4628d24f349b53489b55fd265d4fbd4322";
+//        String data = "{\"sender\":\"test02\",\"amount\":\"10\",\"recipient\":\"test01\"}";
+        String sign = getSign(pri, salt, admin_user);
+        String data = "{\"sender\":\""+sender+"\",\"amount\":\""+amount+"\",\"recipient\":\""+recipient+"\"}";
+        NameValuePair[] packDataParas = PackDataParas(sign, ts, admin_user, data);
+        String resStr = httpClient.post(packDataParas);
+        return resStr;
+    }
     
-    
+    public  String httpsPost(String sign, String ts,String admin_user,String data) {  
+        try {  
+            HostnameVerifier hv = new HostnameVerifier() {
+                public boolean verify(String urlHostName, SSLSession session) {
+                    return true;
+                }
+            };
+            sign = URLEncoder.encode(sign, "UTF-8");
+            ts = URLEncoder.encode(ts, "UTF-8");
+            admin_user = URLEncoder.encode(admin_user, "UTF-8");
+            data = URLEncoder.encode(data, "UTF-8");
+            String content = "sign="+sign+"&ts="+ts+"&admin_user="+admin_user+"&data="+data;
+            javax.net.ssl.TrustManager[] trustAllCerts = new javax.net.ssl.TrustManager[1];
+            javax.net.ssl.TrustManager tm = new MyM();
+            trustAllCerts[0] = tm;
+            javax.net.ssl.SSLContext sc = javax.net.ssl.SSLContext.getInstance("SSL");
+            sc.init(null, trustAllCerts, null);
+            javax.net.ssl.HttpsURLConnection.setDefaultSSLSocketFactory(sc.getSocketFactory());
+            HttpsURLConnection.setDefaultHostnameVerifier(hv);
+            HttpsURLConnection  httpsConn  = (HttpsURLConnection) new URL(https_url).openConnection();
+            //设置是否向httpsConn输出
+            httpsConn.setDoOutput(true);
+            //设置是否向httpsConn读入
+            httpsConn.setDoInput(true);
+            httpsConn.setRequestMethod("POST");
+            // Post 请求不能使用缓存
+            httpsConn.setUseCaches(false);
+            httpsConn.setInstanceFollowRedirects(true);
+            httpsConn.setRequestProperty("Content-Type","application/x-www-form-urlencoded");
+            httpsConn.connect();
+            //输出内容
+            DataOutputStream out = new DataOutputStream(httpsConn.getOutputStream());
+            out.writeBytes(content);
+            out.flush();
+            out.close(); 
+            //获取响应流
+            InputStream response = httpsConn.getInputStream();
+            ByteArrayOutputStream result = new ByteArrayOutputStream();
+            byte[] dataArray = new byte[10240];
+            int count = -1;
+            while (-1 != (count = response.read(dataArray, 0, dataArray.length))) {
+                result.write(dataArray, 0, count);
+            }
+            httpsConn.disconnect();
+            String reponseStr = new String(result.toByteArray(), "utf-8");
+            System.out.println("-----------httpsPost------------返回reponseStr："+reponseStr);
+            return reponseStr;
+        } catch (Exception e) {  
+            e.printStackTrace();
+        }finally{
+//            System.out.println("转账接口调用------------------返回状态码status="+status);
+        } 
+        return null;  
+    }  
+    static class MyM implements TrustManager, X509TrustManager {
+        public void checkClientTrusted(java.security.cert.X509Certificate[] chain, String authType) throws java.security.cert.CertificateException {}
+        public void checkServerTrusted(java.security.cert.X509Certificate[] chain, String authType) throws java.security.cert.CertificateException {}
+        public java.security.cert.X509Certificate[] getAcceptedIssuers() {
+            return null;
+        }
+    }
 }
