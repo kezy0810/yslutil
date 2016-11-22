@@ -19,9 +19,9 @@ import org.apache.commons.httpclient.NameValuePair;
 import org.apache.commons.httpclient.methods.PostMethod;
 public class APIHttpClient {
     // 接口地址  
-    private  String URL = "http://test.tfccwallet.com";  
-    private  String https_url = "https://test.tfccwallet.com";  
-    private  String API = "/api/tx/admin_make";  
+    private  static String URL = "http://test.tfccwallet.com";  
+//    private  String https_url = "https://test.tfccwallet.com";  
+    private  static String API = "/api/tx/admin_make";  
     private HttpClient httpClient = null;  
     private PostMethod method = null;  
     private long startTime = 0L;  
@@ -191,8 +191,8 @@ public class APIHttpClient {
         return APIHttpClient.admin_user;
     }  
     public static void main(String[] args) {  
-        /*APIHttpClient httpClient = new APIHttpClient(null,null);  
-        JSONObject json = new JSONObject();  
+        APIHttpClient httpClient = new APIHttpClient(null,null);  
+        /*JSONObject json = new JSONObject();  
         JSONObject data = new JSONObject();  
         data.put("amount", "10");
         data.put("recipient", "recipient");
@@ -202,19 +202,18 @@ public class APIHttpClient {
         json.put("ts", ts);
         json.put("sign", getSign(pri,salt,admin_user));
         System.out.println(httpClient.post(json.toJSONString()));  */
-        APIHttpClient httpClient = new APIHttpClient();  
 //        String str = "sign=c91e45447ddcece3118eeb72c3f55d4628d24f349b53489b55fd265d4fbd4322&ts=1476008251959&admin_user=sanapi&data={\"sender\":\"test02\",\"amount\":\"10\",\"recipient\":\"test01\"}";
         String sign = "c91e45447ddcece3118eeb72c3f55d4628d24f349b53489b55fd265d4fbd4322";
         String data = "{\"sender\":\"test02\",\"amount\":\"10\",\"recipient\":\"test01\"}";
         NameValuePair[] packDataParas = PackDataParas(sign, ts, admin_user, data);
-//        System.out.println(httpClient.post(packDataParas));
+        System.out.println(httpClient.post(packDataParas));
         /*String data = "1234561101476090950801";
         String sign = SHA256Util.sign(APIHttpClient.pri, data);
         System.out.println("currentTimeMillis="+System.currentTimeMillis());  */
         
         //签名认证
 //        validSign("23335","1" ,"10","1476187837548","8c12c33958fd8ca926cd40ab59ce32b422bae496cdb31dbfb8c497eb7c798e44","693369e4bd1ce20bab88b461e0d47d5ae69bd1b7b3a33ffcd3fab801ba04a424");
-        httpClient.httpsPost(sign, ts, admin_user, data);
+//        httpsPost(sign, ts, admin_user, data,URL);
     } 
     /**
      * @describe:
@@ -265,17 +264,16 @@ public class APIHttpClient {
             System.out.println("转账接口-------参数有误");
             return null;
         }
-        APIHttpClient httpClient = new APIHttpClient(url,api);  
-//        String sign = "c91e45447ddcece3118eeb72c3f55d4628d24f349b53489b55fd265d4fbd4322";
-//        String data = "{\"sender\":\"test02\",\"amount\":\"10\",\"recipient\":\"test01\"}";
         String sign = getSign(pri, salt, admin_user);
         String data = "{\"sender\":\""+sender+"\",\"amount\":\""+amount+"\",\"recipient\":\""+recipient+"\"}";
-        NameValuePair[] packDataParas = PackDataParas(sign, ts, admin_user, data);
-        String resStr = httpClient.post(packDataParas);
+        if(StringUtil.isEmpty(url)){
+            url = URL;
+        }
+        String resStr = httpsPost(sign, ts, admin_user, data,url);
         return resStr;
     }
     
-    public  String httpsPost(String sign, String ts,String admin_user,String data) {  
+    public static String httpsPost(String sign, String ts,String admin_user,String data,String url) {  
         try {  
             HostnameVerifier hv = new HostnameVerifier() {
                 public boolean verify(String urlHostName, SSLSession session) {
@@ -294,7 +292,7 @@ public class APIHttpClient {
             sc.init(null, trustAllCerts, null);
             javax.net.ssl.HttpsURLConnection.setDefaultSSLSocketFactory(sc.getSocketFactory());
             HttpsURLConnection.setDefaultHostnameVerifier(hv);
-            HttpsURLConnection  httpsConn  = (HttpsURLConnection) new URL(https_url).openConnection();
+            HttpsURLConnection  httpsConn  = (HttpsURLConnection) new URL(url).openConnection();
             //设置是否向httpsConn输出
             httpsConn.setDoOutput(true);
             //设置是否向httpsConn读入
