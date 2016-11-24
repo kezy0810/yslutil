@@ -31,6 +31,7 @@ public class Validator {
     public static final String REGEX_MOBILE = "^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1})|(17[0-9]{1})|(14[0-9]{1}))+\\d{8})$";
     
  
+    public static final String REGEX_PHONE_STR = "^(1\\d{10}(,)?)+$";
     /**
      * 正则表达式：验证邮箱
      */
@@ -110,12 +111,21 @@ public class Validator {
  
     /**
      * 校验手机号
-     * 
      * @param mobile
      * @return 校验通过返回true，否则返回false
      */
     public static boolean isMobile(String mobile) {
         return Pattern.matches(REGEX_MOBILE, mobile);
+    }
+    /**
+     * @describe:校验手机号，多个手机号‘,’隔开，需与isMobile配合使用
+     * @author: zhangchunming
+     * @date: 2016年11月23日下午8:06:29
+     * @param phoneStr
+     * @return: boolean
+     */
+    public static boolean isPhoneStr(String phoneStr) {
+        return Pattern.matches(REGEX_PHONE_STR, phoneStr);
     }
  
     /**
