@@ -292,7 +292,7 @@ public class APIHttpClient {
             sc.init(null, trustAllCerts, null);
             javax.net.ssl.HttpsURLConnection.setDefaultSSLSocketFactory(sc.getSocketFactory());
             HttpsURLConnection.setDefaultHostnameVerifier(hv);
-            HttpsURLConnection  httpsConn  = (HttpsURLConnection) new URL(url).openConnection();
+            HttpURLConnection  httpsConn  = (HttpURLConnection) new URL(url).openConnection();
             //设置是否向httpsConn输出
             httpsConn.setDoOutput(true);
             //设置是否向httpsConn读入

@@ -269,9 +269,9 @@ public class Validator {
         System.out.println(Validator.isChinese(username));
         String str = "10000000";
         System.out.println(Validator.isNumberMax7(str));*/
-        String phone = "15632424803";
-       System.out.println(Validator.isMobile(phone));//111107
-       System.out.println(Validator.is6Number("111102"));
+        String phone = "15632424803 ";
+        System.out.println(Validator.isMobile(phone));//111107
+        System.out.println(Validator.is6Number("111102"));
        /* String money = "120.0123";
         System.out.println(Validator.isMoney4(money));
         String password = " alkg  ";
