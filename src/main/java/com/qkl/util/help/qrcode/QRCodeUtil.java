@@ -282,7 +282,7 @@ public class QRCodeUtil {
     	sb.append("http://172.16.16.72:8080/yc_app_web/index/index.do");
     	sb.append("?");
     	sb.append("id=6");
-        String fileName = QRCodeUtil.encode(sb.toString(), "D:/images.png", "D:/Sample Pictures/", true);
+        String fileName = QRCodeUtil.encode(sb.toString(), "D:/devbin/repos/qkl_wlsc_web/WebContent/resources/img/logo.png", "D:/img", true);
         System.out.println(fileName);
     }
     	//解析二维码获得链接
