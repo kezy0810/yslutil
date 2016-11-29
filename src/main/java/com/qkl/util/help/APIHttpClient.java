@@ -262,7 +262,7 @@ public class APIHttpClient {
     public static String httpsTurnOut(String url,String api,String sender,String recipient,String amount,String pri,String salt,String admin_user,String txnType){
         if(StringUtil.isEmpty(sender)||StringUtil.isEmpty(recipient)||StringUtil.isEmpty(amount)||
                 StringUtil.isEmpty(pri)||StringUtil.isEmpty(salt)||StringUtil.isEmpty(admin_user)||StringUtil.isEmpty(txnType)){
-            System.out.println("转账接口-------参数有误");
+            System.out.println("转三界宝接口-------参数有误：url="+url+",api="+api+",sender="+sender+",recipient="+recipient+",amount="+amount+",pri="+pri+",salt="+salt+",admin_user="+admin_user+",txnType="+txnType);
             return null;
         }
         String sign = getSign(pri, salt, admin_user);
