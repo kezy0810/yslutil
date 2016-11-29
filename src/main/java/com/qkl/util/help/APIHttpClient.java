@@ -240,6 +240,7 @@ public class APIHttpClient {
 //        String data = "{\"sender\":\"test02\",\"amount\":\"10\",\"recipient\":\"test01\"}";
         String sign = getSign(pri, salt, admin_user);
         String data = "{\"sender\":\""+sender+"\",\"amount\":\""+amount+"\",\"recipient\":\""+recipient+"\"}";
+        String ts = String.valueOf(System.currentTimeMillis());
         NameValuePair[] packDataParas = PackDataParas(sign, ts, admin_user, data);
         String resStr = httpClient.post(packDataParas);
         return resStr;
@@ -258,17 +259,18 @@ public class APIHttpClient {
      * @param admin_user
      * @return: String
      */
-    public static String httpsTurnOut(String url,String api,String sender,String recipient,String amount,String pri,String salt,String admin_user){
+    public static String httpsTurnOut(String url,String api,String sender,String recipient,String amount,String pri,String salt,String admin_user,String txnType){
         if(StringUtil.isEmpty(sender)||StringUtil.isEmpty(recipient)||StringUtil.isEmpty(amount)||
-                StringUtil.isEmpty(pri)||StringUtil.isEmpty(salt)||StringUtil.isEmpty(admin_user)){
+                StringUtil.isEmpty(pri)||StringUtil.isEmpty(salt)||StringUtil.isEmpty(admin_user)||StringUtil.isEmpty(txnType)){
             System.out.println("转账接口-------参数有误");
             return null;
         }
         String sign = getSign(pri, salt, admin_user);
-        String data = "{\"sender\":\""+sender+"\",\"amount\":\""+amount+"\",\"recipient\":\""+recipient+"\"}";
+        String data = "{\"sender\":\""+sender+"\",\"amount\":\""+amount+"\",\"recipient\":\""+recipient+"\",\"txnType\":\""+txnType+"\"}";
         if(StringUtil.isEmpty(url)){
-            url = URL;
+            url = URL+API;
         }
+        String ts = String.valueOf(System.currentTimeMillis());
         String resStr = httpsPost(sign, ts, admin_user, data,url);
         return resStr;
     }
@@ -285,6 +287,7 @@ public class APIHttpClient {
             admin_user = URLEncoder.encode(admin_user, "UTF-8");
             data = URLEncoder.encode(data, "UTF-8");
             String content = "sign="+sign+"&ts="+ts+"&admin_user="+admin_user+"&data="+data;
+            System.out.println("------------httpsPost----请求内容content："+content);
             javax.net.ssl.TrustManager[] trustAllCerts = new javax.net.ssl.TrustManager[1];
             javax.net.ssl.TrustManager tm = new MyM();
             trustAllCerts[0] = tm;
