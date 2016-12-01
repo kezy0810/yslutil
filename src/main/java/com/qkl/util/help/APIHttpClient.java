@@ -19,8 +19,8 @@ import org.apache.commons.httpclient.NameValuePair;
 import org.apache.commons.httpclient.methods.PostMethod;
 public class APIHttpClient {
     // 接口地址  
-    private  static String URL = "http://test.tfccwallet.com";  
-//    private  String https_url = "https://test.tfccwallet.com";  
+//    private  static String URL = "http://test.tfccwallet.com";  
+    private  static String URL = "https://www.sanjielian.com/";  
     private  static String API = "/api/tx/admin_make";  
     private HttpClient httpClient = null;  
     private PostMethod method = null;  
@@ -35,9 +35,6 @@ public class APIHttpClient {
     private static String data = "";
     private static String ts = String.valueOf(System.currentTimeMillis());
     
-    public APIHttpClient(){
-        
-    }
     /** 
      * 接口地址 
      * @param url 
@@ -269,6 +266,8 @@ public class APIHttpClient {
         String data = "{\"sender\":\""+sender+"\",\"amount\":\""+amount+"\",\"recipient\":\""+recipient+"\",\"txnType\":\""+txnType+"\"}";
         if(StringUtil.isEmpty(url)){
             url = URL+API;
+        }else{
+            url = url+API;
         }
         String ts = String.valueOf(System.currentTimeMillis());
         String resStr = httpsPost(sign, ts, admin_user, data,url);
@@ -286,7 +285,7 @@ public class APIHttpClient {
             ts = URLEncoder.encode(ts, "UTF-8");
             admin_user = URLEncoder.encode(admin_user, "UTF-8");
             data = URLEncoder.encode(data, "UTF-8");
-            String content = "sign="+sign+"&ts="+ts+"&admin_user="+admin_user+"&data="+data;
+            String content = "sign="+sign+"&ts="+ts+"&admin_user="+admin_user+"&data="+data+"&url="+url;
             System.out.println("------------httpsPost----请求内容content："+content);
             javax.net.ssl.TrustManager[] trustAllCerts = new javax.net.ssl.TrustManager[1];
             javax.net.ssl.TrustManager tm = new MyM();
