@@ -165,10 +165,15 @@ public class FormatNum {
 	public static String convertEUserName(String eUserName){
 		return StringUtils.substring(eUserName, 0, 1)+"***"+StringUtils.substring(eUserName,-1);
 	}
+	public static String convertRealName(String realName){
+        return "*"+StringUtils.substring(realName, 1, realName.length());
+    }
 	
 	public static void main(String[] args) {
 //		System.out.println(convertFixedPhone("010-2729079-012"));
 		System.out.println(convertFixedPhone("010-27290791-015"));
 		System.out.println(convertEUserName("张三"));
+		System.out.println(convertPhone("18618382548"));
+		System.out.println(convertRealName("张春明"));
 	}
 }
