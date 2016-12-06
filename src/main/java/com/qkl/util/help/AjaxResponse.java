@@ -54,13 +54,14 @@ public class AjaxResponse implements Serializable {
 		this.data = data;
 	}
 
-	@Override
-	public String toString() {
-		return "AjaxResponse [errorCode=" + errorCode + ", message=" + message
-				+ ", data=" + data + ", success=" + success + "]";
-	}
+	
 
-	public Page getPage() {
+	@Override
+    public String toString() {
+        return "AjaxResponse [errorCode=" + errorCode + ", message=" + message + ", page=" + page + ", data=" + data + ", success=" + success + "]";
+    }
+
+    public Page getPage() {
 		return page;
 	}
 
