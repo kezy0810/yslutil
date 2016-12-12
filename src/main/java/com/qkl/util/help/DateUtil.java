@@ -36,6 +36,9 @@ public class DateUtil
 
     private final static SimpleDateFormat sdfTime = new SimpleDateFormat(
             "yyyy-MM-dd HH:mm:ss");
+    
+    private final static SimpleDateFormat sdfChineseTime = new SimpleDateFormat(
+            "yyyy年MM月dd日 HH:mm");
 
 	public DateUtil()
 	{
@@ -1833,6 +1836,10 @@ public class DateUtil
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
 		return formatter.format(date);*/
 	    return sdfTime.format(new Date());
+	}
+	public static String getChineseCurrDateTime()
+	{
+	    return sdfChineseTime.format(new Date());
 	}
 
 	/**
