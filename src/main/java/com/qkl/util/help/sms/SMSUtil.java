@@ -27,8 +27,8 @@ public class SMSUtil {
 	public static String notice_productid = "887362";//管理商通知专用
 	public static String vcode_productid = "676767";//优质验证码专用
 	public static String market_productid = "435227";//商超会员营销
-//	private static String url = "http://www.ztsms.cn:8800/sendNSms.do";
-	private static String url = "http://www.isanjie.com/ztsms/sendNSms.do";
+	private static String url = "http://www.ztsms.cn:8800/sendNSms.do";
+//	private static String url = "http://www.isanjie.com/ztsms/sendNSms.do";
 	//http://www.ztsms.cn:8800/sendManyNSms.do  多号码，多内容
     //http://www.ztsms.cn:8800/sendNSms.do      同内容，不同号码
 	public static boolean sendSMS_ChinaNet1(String mobile,String content,String productid) throws Exception{
@@ -116,7 +116,7 @@ public class SMSUtil {
         SMSUtil.sendSMS_ChinaNet1("18618382548",  "欢迎您注册三界生活账号，您的验证码是：654321，打死也不能告诉别人哦！",vcode_productid);
         System.out.println("start tiime:"+new SimpleDateFormat("yyyy-MM-dd HH:mm:ss:SSS").format(new Date(System.currentTimeMillis())));*/
 //        SMSUtil.sendSMS_ChinaNet1("022-123123123",  "欢迎您注册三界生活账号，您的验证码是：654321，打死也不能告诉别人哦！",vcode_productid);
-        SMSUtil.sendSMS_ChinaNet1("18618382548",  
+        SMSUtil.sendSMS_ChinaNet1("18600606002",  
                 "123123",vcode_productid);
 
     }
