@@ -27,8 +27,8 @@ public class SMSUtil {
 	public static String notice_productid = "887362";//管理商通知专用
 	public static String vcode_productid = "676767";//优质验证码专用
 	public static String market_productid = "435227";//商超会员营销
-	private static String url = "http://www.ztsms.cn:8800/sendNSms.do";
-//	private static String url = "http://www.isanjie.com/ztsms/sendNSms.do";
+//	private static String url = "http://www.ztsms.cn:8800/sendNSms.do";
+	private static String url = "http://www.isanjie.com/ztsms/sendNSms.do";
 	//http://www.ztsms.cn:8800/sendManyNSms.do  多号码，多内容
     //http://www.ztsms.cn:8800/sendNSms.do      同内容，不同号码
 	public static boolean sendSMS_ChinaNet1(String mobile,String content,String productid) throws Exception{
