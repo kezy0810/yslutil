@@ -53,6 +53,25 @@ public class SMSUtil {
 		return false;
 	}
 	
+	public static String sendSMS(String mobile,String content,String productid) throws Exception{
+        
+        Map paramentMap = new LinkedHashMap();
+        paramentMap.put("username", username);//用户名
+        String strtime = new SimpleDateFormat("yyyyMMddHHmmss").format(System.currentTimeMillis());
+//        String pass = MD5Gen.getMD5(MD5Gen.getMD5("密码")+strtime);
+        String pass =MD5Util.getMd5Code(MD5Util.getMd5Code(password)+strtime);
+        paramentMap.put("tkey",  strtime);
+        paramentMap.put("password", pass);//加密后密码
+        paramentMap.put("productid", productid);//产品id
+        paramentMap.put("mobile", mobile);//号码
+        paramentMap.put("content",  content);//内容
+        paramentMap.put("xh",  "");
+        String status = "";
+        status = sendHttpRequest16(url, paramentMap, "UTF-8", "POST");
+        System.out.println("短信发送状态-status："+status);
+        return status;
+    }
+	
 	public static String sendHttpRequest16(String strUrl, Map<String, String> paramentMap, String anaycle, String presendway) {
 		StringBuffer sb = new StringBuffer();
 		try {

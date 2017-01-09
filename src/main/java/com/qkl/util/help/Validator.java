@@ -77,6 +77,10 @@ public class Validator {
      */
     public static final String REGEX_MONEY4 = "^(([1-9]{1}\\d*)|([0]{1}))(\\.(\\d){0,4})?$";
     /**
+     * 正则表达式：验证金额,最多保留2位小数
+     */
+    public static final String REGEX_MONEY2 = "^(([1-9]{1}\\d*)|([0]{1}))(\\.(\\d){0,2})?$";
+    /**
      * 正则表达式：验证金额
      */
     public static final String REGEX_MONEY = "^([1-9]{1}\\d*)$";
@@ -220,6 +224,16 @@ public class Validator {
      */
     public static boolean isMoney4(String str) {
         return Pattern.matches(REGEX_MONEY4, str);
+    }
+    /**
+     * @describe:校验金额，最多可以保留2位小数
+     * @author: zhangchunming
+     * @date: 2017年1月6日下午18:39:24
+     * @param str
+     * @return: boolean
+     */
+    public static boolean isMoney2(String str) {
+        return Pattern.matches(REGEX_MONEY2, str);
     }
     /**
      * @describe:校验金额
