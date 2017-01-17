@@ -11,6 +11,7 @@ import java.util.Enumeration;
 import java.util.GregorianCalendar;
 import java.util.Hashtable;
 import java.util.Locale;
+import java.util.StringTokenizer;
 
 import org.apache.commons.lang.StringUtils;
 
@@ -1687,6 +1688,13 @@ public class DateUtil
 		return date1.compareTo(date2);
 	}
 
+	public static int compareDateStr(String str1, String str2)
+    {
+	    Date date1 = getDateByString(str1);
+	    Date date2 = getDateByString(str2);
+        return date1.compareTo(date2);
+    }
+	
 	public static int compareDate(String str1, Date date2)
 	{
 		Date date1 = getDateByString(str1);
@@ -2816,7 +2824,7 @@ public class DateUtil
 			//			System.out.println(DateUtil.parseFromFormats(sdata));
 			//			String sdata = "2005-01-01";
 			//			System.out.println(
-			//				DateUtil.stringToDate(sdata, "YYYY-MM-DD"));
+//							DateUtil.stringToDate(sdata, "YYYY-MM-DD"));
 			//			Date nowDate1 = new Date();
 			//			Date nowDate2 = new Date();
 			//			System.out.println("nowDate1" + nowDate1);
@@ -2835,14 +2843,17 @@ public class DateUtil
 //			Date nows =new Date();
 //			System.out.println("============"+getDateLongCn(nows));
 //			System.out.println("============0000000000000000000000000000000");
-//			System.out.println("============stringToDate="+stringToDate("2009-11-18 19:14:31","yyyy-MM-dd h24:mi:ss"));
+			System.out.println("============stringToDate="+stringToDate("2009-11-18 19:14:31","yyyy-MM-dd h24:mi:ss"));
 //			
 //			
 //			System.out.println("============getDateFromString="+getDateFromString("2009-11-18 19:14:31"));
-			String reg_time = "2015-04-17 00:00:00";
+			/*String reg_time = "2015-04-17 00:00:00";
 			Date date = DateUtil.getDateFromString(reg_time);
 			System.out.println(date);
-			System.out.println("getCurrDateTime="+getCurrDateTime());
+			System.out.println("getCurrDateTime="+getCurrDateTime());*/
+			
+			System.out.println(monthsBetween("2017-01-31", "2016-12-01"));
+			System.out.println(compareDateStr("2016-12-01", "2016-11-02"));
 			
 			
 		}
@@ -3228,5 +3239,53 @@ public class DateUtil
             e.printStackTrace();
         }
         return new Date();
+    }
+    
+    /**
+     * 下面的两个成员变量分别是日期分隔符字符串和字符串分隔器，专门用来解析字符串格式的日期
+     * 程序中主要的日期分隔符为"-"和"/"，且日期序列为“年/月/日”型，其内容缺一不可 例如:09/02/02或2009-02-02
+     */
+    public static final String DATE_SEPARATOR = "-/: ";
+    public static StringTokenizer sToken;
+    
+    /** 将字符串格式的日期转换为Calender **/
+    public static GregorianCalendar parse2Cal(String pDateStr) {
+        sToken = new StringTokenizer(pDateStr, DATE_SEPARATOR);
+        int vYear = Integer.parseInt(sToken.nextToken());
+        // GregorianCalendar的月份是从0开始算起的，变态！！
+        int vMonth = Integer.parseInt(sToken.nextToken()) - 1;
+        int vDayOfMonth = Integer.parseInt(sToken.nextToken());
+        return new GregorianCalendar(vYear, vMonth, vDayOfMonth);
+    }
+    
+    /** 给定两个时间相差的月份,String版 **/
+    public static int monthsBetween(String pFormerStr, String pLatterStr) {
+        GregorianCalendar vFormer = DateUtil.parse2Cal(pFormerStr);
+        GregorianCalendar vLatter = DateUtil.parse2Cal(pLatterStr);
+        return monthsBetween(vFormer, vLatter);
+    }
+    
+    public static int monthsBetween(GregorianCalendar pFormer,
+            GregorianCalendar pLatter) {
+        GregorianCalendar vFormer = pFormer, vLatter = pLatter;
+        boolean vPositive = true;
+        if (pFormer.before(pLatter)) {
+            vFormer = pFormer;
+            vLatter = pLatter;
+        } else {
+            vFormer = pLatter;
+            vLatter = pFormer;
+            vPositive = false;
+        }
+        int vCounter = 0;
+        while (vFormer.get(vFormer.YEAR) != vLatter.get(vLatter.YEAR)
+                || vFormer.get(vFormer.MONTH) != vLatter.get(vLatter.MONTH)) {
+            vFormer.add(Calendar.MONTH, 1);
+            vCounter++;
+        }
+        if (vPositive)
+            return vCounter;
+        else
+            return -vCounter;
     }
 }
