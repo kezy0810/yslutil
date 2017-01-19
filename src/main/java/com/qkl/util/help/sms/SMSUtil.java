@@ -9,6 +9,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -54,7 +55,6 @@ public class SMSUtil {
 	}
 	
 	public static String sendSMS(String mobile,String content,String productid) throws Exception{
-        
         Map paramentMap = new LinkedHashMap();
         paramentMap.put("username", username);//用户名
         String strtime = new SimpleDateFormat("yyyyMMddHHmmss").format(System.currentTimeMillis());
@@ -131,12 +131,12 @@ public class SMSUtil {
         //for (int i = 0; i < 1; i++) {
             //new Testdd("---" + i).start();
         //}
-        /*System.out.println("start tiime:"+new SimpleDateFormat("yyyy-MM-dd HH:mm:ss:SSS").format(new Date(System.currentTimeMillis())));
+        System.out.println("start tiime:"+new SimpleDateFormat("yyyy-MM-dd HH:mm:ss:SSS").format(new Date(System.currentTimeMillis())));
         SMSUtil.sendSMS_ChinaNet1("18618382548",  "欢迎您注册三界生活账号，您的验证码是：654321，打死也不能告诉别人哦！",vcode_productid);
-        System.out.println("start tiime:"+new SimpleDateFormat("yyyy-MM-dd HH:mm:ss:SSS").format(new Date(System.currentTimeMillis())));*/
+        System.out.println("start tiime:"+new SimpleDateFormat("yyyy-MM-dd HH:mm:ss:SSS").format(new Date(System.currentTimeMillis())));
 //        SMSUtil.sendSMS_ChinaNet1("022-123123123",  "欢迎您注册三界生活账号，您的验证码是：654321，打死也不能告诉别人哦！",vcode_productid);
-        SMSUtil.sendSMS_ChinaNet1("18810858166",  
-                "欢迎光临三界生活，您正在注册账号18810858166，验证码是：325581，打死也不能告诉别人哦！",vcode_productid);
-	    System.out.println((int)((Math.random()*9+1)*100000)+"");
+        /*SMSUtil.sendSMS_ChinaNet1("18618382548",  
+                "欢迎光临三界生活，您正在注册账号18618382548，验证码是：325581，打死也不能告诉别人哦！",vcode_productid);
+	    System.out.println((int)((Math.random()*9+1)*100000)+"");*/
     }
 }
