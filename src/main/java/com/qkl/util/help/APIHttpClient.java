@@ -214,7 +214,7 @@ public class APIHttpClient {
 //        validSign("23335","1" ,"10","1476187837548","8c12c33958fd8ca926cd40ab59ce32b422bae496cdb31dbfb8c497eb7c798e44","693369e4bd1ce20bab88b461e0d47d5ae69bd1b7b3a33ffcd3fab801ba04a424");
 //        httpsPost(sign, ts, admin_user, data,URL);
 //        getSign("475e287f9a219916285261a4247dba307d34110ae1f85faeb1b4bf70efb98154", "6a59864a81b7be0ca41d6dc9595344922bc175e8881ab257c99a92bdf514d129", "sanadminapi",String.valueOf(System.currentTimeMillis()));
-//        httpsTurnOut("http://www.isanjie.com/sanjielian/", API, "17082275810", "15209205973", "0.01", "475e287f9a219916285261a4247dba307d34110ae1f85faeb1b4bf70efb98154", "6a59864a81b7be0ca41d6dc9595344922bc175e8881ab257c99a92bdf514d129", "sanadminapi","3");
+//        httpsTurnOut("http://isanjie.com/sanjielian/", API, "17082275810", "15209205973", "0.01", "475e287f9a219916285261a4247dba307d34110ae1f85faeb1b4bf70efb98154", "6a59864a81b7be0ca41d6dc9595344922bc175e8881ab257c99a92bdf514d129", "sanadminapi","3");
     } 
     /**
      * @describe:

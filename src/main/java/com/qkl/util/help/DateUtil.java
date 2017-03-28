@@ -2797,7 +2797,7 @@ public class DateUtil
         return sdfLongTimePlus.parse(sdfLongTimePlus.format(date));
     }
 
-	public static void main(String[] args)
+	/*public static void main(String[] args)
 	{
 		try
 		{
@@ -2847,10 +2847,10 @@ public class DateUtil
 //			
 //			
 //			System.out.println("============getDateFromString="+getDateFromString("2009-11-18 19:14:31"));
-			/*String reg_time = "2015-04-17 00:00:00";
+			String reg_time = "2015-04-17 00:00:00";
 			Date date = DateUtil.getDateFromString(reg_time);
 			System.out.println(date);
-			System.out.println("getCurrDateTime="+getCurrDateTime());*/
+			System.out.println("getCurrDateTime="+getCurrDateTime());
 			
 			System.out.println(monthsBetween("2017-01-31", "2016-12-01"));
 			System.out.println(compareDateStr("2016-12-01", "2016-11-02"));
@@ -2861,7 +2861,7 @@ public class DateUtil
 		{
 			ex.printStackTrace();
 		}
-	}
+	}*/
 	
 	/**
 	 * 
@@ -3287,5 +3287,62 @@ public class DateUtil
             return vCounter;
         else
             return -vCounter;
+    }
+    
+    /** 
+     * 时间戳转换成日期格式字符串 
+     * @param seconds 精确到秒的字符串 
+     * @param formatStr 
+     * @return 
+     */  
+    public static String timeStamp2Date(String seconds,String format) {  
+        if(seconds == null || seconds.isEmpty() || seconds.equals("null")){  
+            return "";  
+        }  
+        if(format == null || format.isEmpty()) format = "yyyy-MM-dd HH:mm:ss";  
+        SimpleDateFormat sdf = new SimpleDateFormat(format);  
+        return sdf.format(new Date(Long.valueOf(seconds+"000")));  
+    }  
+    /** 
+     * 日期格式字符串转换成时间戳 
+     * @param date 字符串日期 
+     * @param format 如：yyyy-MM-dd HH:mm:ss 
+     * @return 
+     */  
+    public static String date2TimeStamp(String date_str,String format){  
+        try {  
+            SimpleDateFormat sdf = new SimpleDateFormat(format);  
+            return String.valueOf(sdf.parse(date_str).getTime()/1000);  
+        } catch (Exception e) {  
+            e.printStackTrace();  
+        }  
+        return "";  
+    }  
+      
+    /** 
+     * 取得当前时间戳（精确到秒） 
+     * @return 
+     */  
+    public static String timeStamp(){  
+        long time = System.currentTimeMillis();  
+        String t = String.valueOf(time/1000);  
+        return t;  
+    }  
+      
+    //  输出结果：  
+    //  timeStamp=1417792627  
+    //  date=2014-12-05 23:17:07  
+    //  1417792627  
+    public static void main(String[] args) {  
+        String timeStamp = "1490600855";  
+        System.out.println("timeStamp="+timeStamp);  
+          
+        String date = timeStamp2Date(timeStamp, "yyyy-MM-dd HH:mm:ss");  
+        System.out.println("date="+date);  
+          
+       /* String timeStamp2 = date2TimeStamp(date, "yyyy-MM-dd HH:mm:ss");  
+        System.out.println(timeStamp2);  */
+//        timeStamp=1490088168
+//                date=2017-03-21 17:22:48
     }
 }
