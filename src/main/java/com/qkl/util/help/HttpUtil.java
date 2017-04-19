@@ -112,16 +112,18 @@ public class HttpUtil {
 			connection.setDoInput(true);
 			connection.setRequestMethod("POST");
 			// Post 请求不能使用缓存
+			connection.setConnectTimeout(60000);
+			connection.setReadTimeout(60000);
 			connection.setUseCaches(false);
 			connection.setInstanceFollowRedirects(true);
-			connection.setRequestProperty("Content-Type",
-					"application/x-www-form-urlencoded");
+			connection.setRequestProperty("Content-Type","application/x-www-form-urlencoded;charset=UTF-8");
 			connection.connect();
 			// 发送流数据
 			out = new DataOutputStream(connection.getOutputStream());
 			//content = URLEncoder.encode(content, "utf-8");
 			// DataOutputStream.writeBytes将字符串中的16位的unicode字符以8位的字符形式写道流里面
-			out.writeBytes(content);
+			out.write(content.toString().getBytes());
+//			out.writeBytes(content);
 			out.flush();
 			out.close();
 			//获取结果
