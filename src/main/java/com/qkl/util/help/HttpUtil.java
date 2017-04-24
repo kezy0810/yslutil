@@ -279,7 +279,15 @@ public class HttpUtil {
         return bout.toByteArray();
     }
     public static void main(String[] args) {
-        String post = postJson(url, params);
-        System.out.println(post);
+        /*String post = postJson(url, params);
+        System.out.println(post);*/
+        
+        try {
+            String sendPostData = sendPostData("http://192.168.200.103:7080/user/login", "account=18618382548&password=zxc123");
+            System.out.println("sendPostData"+sendPostData);
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
     }
 }
