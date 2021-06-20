@@ -27,6 +27,8 @@ public class MailUtil {
 
     // 收件人邮箱（替换为自己知道的有效邮箱）
     public static String receiveMailAccount = "kezar01@163.com";
+    
+    
 
     public static void main(String[] args) throws Exception {
         // 1. 创建参数配置, 用于连接邮件服务器的参数配置
