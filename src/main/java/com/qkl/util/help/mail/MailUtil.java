@@ -1,9 +1,5 @@
 package com.qkl.util.help.mail;
 
-/**
- * Created by LiShuo on 2017/4/10.
- */
-
 import javax.mail.MessagingException;
 import javax.mail.NoSuchProviderException;
 import javax.mail.Session;
@@ -21,16 +17,16 @@ public class MailUtil {
     // 发件人的 邮箱 和 密码（替换为自己的邮箱和密码）
     // PS: 某些邮箱服务器为了增加邮箱本身密码的安全性，给 SMTP 客户端设置了独立密码（有的邮箱称为“授权码”）,
     //  坑：邮箱密码不行就必需使用邮箱独立密码（授权码）。
-//    public static String myEmailAccount = "lishuo5263@163.com";
-    public static String myEmailAccount = "lishuo@zichanquanqiu.com";
-    public static String myEmailPassword = "hThHHUDynzepzbVs";
+//    public static String myEmailAccount = "kezy0827@163.com";
+    public static String myEmailAccount = "kezy0827@163.com";
+    public static String myEmailPassword = "mimamima!!!";//换一下正确密码
 
     // 发件人邮箱的 SMTP 服务器地址, 必须准确, 不同邮件服务器地址不同, 一般(只是一般, 绝非绝对)格式为: smtp.xxx.com
     // 网易163邮箱的 SMTP 服务器地址为: smtp.163.com
-    public static String myEmailSMTPHost = "smtp.zichanquanqiu.com";
+    public static String myEmailSMTPHost = "smtp.163.com";
 
     // 收件人邮箱（替换为自己知道的有效邮箱）
-    public static String receiveMailAccount = "zhangchunming@zichanquanqiu.com";
+    public static String receiveMailAccount = "kezar01@163.com";
 
     public static void main(String[] args) throws Exception {
         // 1. 创建参数配置, 用于连接邮件服务器的参数配置
@@ -106,7 +102,7 @@ public class MailUtil {
         // 3. To: 收件人（可以增加多个收件人、抄送、密送）
         message.setRecipient(MimeMessage.RecipientType.TO, new InternetAddress(receiveMail, "", "UTF-8"));
         //    Cc: 抄送（可选）
-//        message.setRecipient(MimeMessage.RecipientType.CC, new InternetAddress("weihongbo@zichanquanqiu.com", "USER_EE", "UTF-8"));
+//        message.setRecipient(MimeMessage.RecipientType.CC, new InternetAddress("kezar10@163.com", "USER_EE", "UTF-8"));
         //    Bcc: 密送（可选）
 
 
@@ -132,7 +128,7 @@ public class MailUtil {
     
     /**
      * @describe:邮件发送
-     * @author: zhangchunming
+     * @author: 
      * @date: 2017年4月10日下午2:33:27
      * @param subject 主题
      * @param content 内容

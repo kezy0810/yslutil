@@ -42,7 +42,7 @@ public class Base64 {
     {     
     	/*String jm = Base64.getBase64("http://aub.iteye.com/");
     	System.out.println(jm);*/
-    	String mm = Base64.getFromBase64("eyJhY2Nfbm8iOiIwNSIsImNyZWF0ZV90aW1lIjoiMjAxNy0wMy0yNCAxNzo0ODoyMiIsImZ1dHVyZV9jdXJyZW5jeSI6IjM2MC4wMCIsIm9wZXJhdG9yIjoiMTMwMDAwMDAwMDAiLCJvdGhlcl9hbW50IjoiMzYwLjAwIiwib3RoZXJfc291cmNlIjoi5ZWG5Z+O5YWR5o2iIiwib3RoZXJubyI6IjE3MDMyNDE3NDgyMDczNTkzMDAiLCJyZW1hcmsxIjoi5paw5qy+6JOd54mZ6ICz5py6IEpLUi0yMDVC5aS05oi05byP5peg57q/6JOd54mZ6ICz5py6IOaUr+aMgVRG5Y2hIiwic3RhdHVzIjoiNSIsInVzZXJfaWQiOiIyNTc3OSIsInVzZXJfdHlwZSI6IjEiLCJ3bGJpX2FtbnQiOiIzNjAuMDAifQ==");
+    	String mm = Base64.getFromBase64("M2RhMmUyNjFlZTgwNDA1ZGIxZGVjZTY0YjcxOWRiNDM=");
     	System.out.println(mm);
     }  
 }

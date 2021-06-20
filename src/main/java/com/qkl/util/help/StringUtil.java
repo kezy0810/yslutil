@@ -12,6 +12,8 @@ import java.util.Map;
 import java.util.Set;
 import java.util.StringTokenizer;
 import java.util.TreeMap;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -1074,6 +1076,16 @@ public class StringUtil
 	public static boolean isNumeric(String str)
 	{
 		return org.apache.commons.lang.StringUtils.isNumeric(str);
+	}
+	
+	public static boolean isNumber(String str)
+	{
+		Pattern pattern = Pattern.compile("^(\\-|\\+)?\\d+(\\.\\d+)?$");//这个是对的
+        Matcher isNum = pattern.matcher(str);
+        if (!isNum.matches()) {
+            return false;
+        }
+        return true;	
 	}
 
 	public static String[] stripAll(String[] strs)

@@ -17,15 +17,22 @@ import com.qkl.util.help.MD5Util;
 
 
 /**
- * 测试
+ * 助通科技短信工具
  * @author my
  *
  */
 public class SMSUtil {
-    /*private static String username = "mmb888";
-    private static String password = "j2mJTEpC";*/
-    private static String username = "sj888";
-    private static String password = "E7SS4Ibz";
+    //三界生活
+    private static String username = "mmb888";
+    private static String password = "j2mJTEpC";
+    
+    //点奇商城
+    /*private static String username = "sj888";
+    private static String password = "E7SS4Ibz";*/
+    
+    //蜂向标账号、密码
+    /*private static String username = "fxb666";
+    private static String password = "qyml00nV";*/
 //  private static String username = "sanjie";
 //  private static String password = "San16888";
     public static String notice_productid = "887362";//管理商通知专用
@@ -135,7 +142,7 @@ public class SMSUtil {
             //new Testdd("---" + i).start();
         //}
         System.out.println("start tiime:"+new SimpleDateFormat("yyyy-MM-dd HH:mm:ss:SSS").format(new Date(System.currentTimeMillis())));
-        SMSUtil.sendSMS_ChinaNet1("18618382548",  "欢迎您注册三界生活账号，您的验证码是：123456，打死也不能告诉别人哦！",vcode_productid);
+        SMSUtil.sendSMS_ChinaNet1("18618382548",  "欢迎您注册蜂向标账号，您的验证码是：123456，打死也不能告诉别人哦！",vcode_productid);
         System.out.println("start tiime:"+new SimpleDateFormat("yyyy-MM-dd HH:mm:ss:SSS").format(new Date(System.currentTimeMillis())));
 //        SMSUtil.sendSMS_ChinaNet1("022-123123123",  "欢迎您注册三界生活账号，您的验证码是：654321，打死也不能告诉别人哦！",vcode_productid);
         /*SMSUtil.sendSMS_ChinaNet1("18618382548",  

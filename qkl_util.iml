@@ -9,7 +9,7 @@
       <sourceFolder url="file://$MODULE_DIR$/src/test/java" isTestSource="true" />
       <excludeFolder url="file://$MODULE_DIR$/target" />
     </content>
-    <orderEntry type="inheritedJdk" />
+    <orderEntry type="jdk" jdkName="1.7" jdkType="JavaSDK" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="Maven: org.apache.mina:mina-core:1.1.7" level="project" />
     <orderEntry type="library" name="Maven: axis:axis-jaxrpc:1.2" level="project" />
@@ -76,5 +76,7 @@
     <orderEntry type="library" name="Maven: org.apache.httpcomponents:httpclient:4.4" level="project" />
     <orderEntry type="library" name="Maven: org.apache.httpcomponents:httpcore:4.3.2" level="project" />
     <orderEntry type="library" name="Maven: commons-httpclient:commons-httpclient:3.0.1" level="project" />
+    <orderEntry type="library" name="Maven: javax.mail:mail:1.0" level="project" />
+    <orderEntry type="library" name="Maven: javax.xml:xml:1.0" level="project" />
   </component>
 </module>

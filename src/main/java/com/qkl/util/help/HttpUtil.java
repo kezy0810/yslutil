@@ -12,6 +12,8 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.regex.Pattern;
+
+import com.qkl.util.help.pager.PageData;
 /**
  * Http操作辅助工具
  */
@@ -282,12 +284,20 @@ public class HttpUtil {
         /*String post = postJson(url, params);
         System.out.println(post);*/
         
-        try {
+        /*try {
             String sendPostData = sendPostData("http://192.168.200.103:7080/user/login", "account=18618382548&password=zxc123");
             System.out.println("sendPostData"+sendPostData);
         } catch (Exception e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
-        }
+        }*/
+        
+        PageData pd  = new PageData();
+        pd.put("user_id", "123456");
+        try {
+            postJson("http://192.168.100.17:3333/logistics-service/api/rest/shopOrder/payNow", com.alibaba.fastjson.JSON.toJSONString(pd));
+        } catch (Exception e) {
+            e.printStackTrace();
+        } 
     }
 }
